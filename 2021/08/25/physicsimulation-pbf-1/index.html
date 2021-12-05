@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>物理模拟——PBF流体模拟（1） | 芜湖飞机场</title><meta name="author" content="飞翔的子明"><meta name="copyright" content="飞翔的子明"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="物理模拟——PBF流体模拟（1） 本文是有关我大学毕设的一个总结，毕设题目为：基于粒子法流体动力学的物理仿真引擎开发，实际工作为基于图形API，搭建起一套简单的渲染框架，并且基于此框架实现CPU端流体模拟算法Position Based Fluid，仓库地址为：https:&#x2F;&#x2F;gitee.com&#x2F;FlyingZiming&#x2F;fluid-simulation-engine  介绍PBF全称Positi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物理模拟——PBF流体模拟（1）">
+<meta property="og:url" content="http://example.com/2021/08/25/physicsimulation-pbf-1/index.html">
+<meta property="og:site_name" content="芜湖飞机场">
+<meta property="og:description" content="物理模拟——PBF流体模拟（1） 本文是有关我大学毕设的一个总结，毕设题目为：基于粒子法流体动力学的物理仿真引擎开发，实际工作为基于图形API，搭建起一套简单的渲染框架，并且基于此框架实现CPU端流体模拟算法Position Based Fluid，仓库地址为：https:&#x2F;&#x2F;gitee.com&#x2F;FlyingZiming&#x2F;fluid-simulation-engine  介绍PBF全称Positi">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-08-25T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-05T16:05:39.815Z">
+<meta property="article:author" content="飞翔的子明">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/25/physicsimulation-pbf-1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '物理模拟——PBF流体模拟（1）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-05 16:05:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">芜湖飞机场</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">物理模拟——PBF流体模拟（1）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-08-25T00:00:00.000Z" title="Created 2021-08-25 00:00:00">2021-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-12-05T16:05:39.815Z" title="Updated 2021-12-05 16:05:39">2021-12-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="物理模拟——PBF流体模拟（1）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="物理模拟——PBF流体模拟（1）"><a href="#物理模拟——PBF流体模拟（1）" class="headerlink" title="物理模拟——PBF流体模拟（1）"></a>物理模拟——PBF流体模拟（1）</h1><blockquote>
+<p>本文是有关我大学毕设的一个总结，毕设题目为：<strong>基于粒子法流体动力学的物理仿真引擎开发</strong>，实际工作为基于图形API，搭建起一套简单的渲染框架，并且基于此框架实现CPU端流体模拟算法Position Based Fluid，仓库地址为：<a target="_blank" rel="noopener" href="https://gitee.com/FlyingZiming/fluid-simulation-engine">https://gitee.com/FlyingZiming/fluid-simulation-engine</a></p>
+</blockquote>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>PBF全称Position Based Fluid，意为基于位置的流体，是基于Position Based Dynamics实现的流体模拟，本文会讲解物理动画概念、流体模拟基础、SPH、PBD、PBF以及流体渲染。</p>
+<p>笔者水平有限，有说的不对的地方欢迎指出。</p>
+<h2 id="基于物理的动画"><a href="#基于物理的动画" class="headerlink" title="基于物理的动画"></a>基于物理的动画</h2><h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>基于物理的动画意味着利用物理原理，通常是经典力学，去为复杂的现象建模，模拟时间推进，实现成模拟算法。</p>
+<p>他们的目标是使用一系列的建模方法，随着时间推演，生成一系列的<strong>系统状态</strong>，再把这些状态渲染为图像。这种动画方法通常是作用于复杂的动画，其表现通常是不被预设好的，根据环境变化有所变化的，因此无法按照传统的制作关键帧方式来进行动画制作，比如一个弹性球落地弹起、布料随风飘动、雨水落在地面。</p>
+<p>创建物理模拟动画有两个元素：<strong>模型</strong>和模拟。模型是一系列定律或规则，通常是物理定律。模拟是将模型封装进一个框架之中从而预测该模型在时间推演下的演化。基于物理的动画的模型就是物理的，是模拟现实世界的行为，但这种模型其实也是被简化过的，影响较小的部分通常会被忽略，模型注重宏观行为，在具体细节上不是特别在意。</p>
+<p>具体的基于物理的动画在使用中通常要考虑很多要素，动画希望动画具有<strong>实时性好</strong>、<strong>相对稳定</strong>的以及可以<strong>方便控制</strong>等等的性质。为了达到这些效果，<strong>动画师有机会重新发明物理定律</strong>，以不同的方式描述我们的世界，只要他们模拟的时候看起来像。</p>
+<h3 id="流体动画"><a href="#流体动画" class="headerlink" title="流体动画"></a>流体动画</h3><p>3d游戏中的流体动画一般的实现比较复杂，不同规模的流体有不同的做法，甚至不同的材料都会使用不同的模拟方法。</p>
+<p>小规模的流体，比如一杯水，可以使用SPH等粒子法去模拟，游戏中典型的实时粒子法就是Position Based Fluid，NVIDIA 的Flex便是使用此算法模拟的流体，跑在GPU上的；</p>
+<p>中等规模的流体，通常使用网格法，欧拉视角求解NS方程，网格法适合处理时常充满空间的流体，比如烟雾等；</p>
+<p>大规模的流体，一般就不能使用物理的方法了，而是使用波函数叠加的方式，去模拟一个场，用在海平面的高度场模拟，具体如Simulating Ocean Water。</p>
+<h2 id="流体模拟基础"><a href="#流体模拟基础" class="headerlink" title="流体模拟基础"></a>流体模拟基础</h2><p>接下来简单讲解一下针对模拟领域需要使用的基础知识、概念等，不需要完全理解。</p>
+<h3 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h3><p>梯度是一个矢量，他的每一个分量是一个关于空间一个轴的偏导数，2维的梯度见式：</p>
+<p>$$<br>\nabla f(x,y) =(\frac {\partial f}{\partial x},\frac {\partial f}{\partial y})<br>$$<br>3维的梯度见式：<br>$$<br>\nabla f(x,y,z) =(\frac {\partial f}{\partial x},\frac {\partial f}{\partial y},\frac {\partial f}{\partial z})<br>$$<br>形象的理解，梯度就是函数在空间变化最快的方向。梯度可以用来估算函数的值，具体表现为同一阶泰勒泰勒展开一样的表现形式。</p>
+<h3 id="散度"><a href="#散度" class="headerlink" title="散度"></a>散度</h3><p>散度面向的对象是一个向量场，用于衡量某一点的矢量的聚集或者发散程度，结果是一个标量可以将其理解为一个矢量和梯度算子的点乘，值为该矢量的三个空间偏导数的和，如果矢量场的散度为0，称该矢量场无散度。</p>
+<p>二阶的散度表示见式：<br>$$<br>\nabla \cdot \vec{u} = \nabla \cdot (u,v) = \frac{\partial u}{\partial x}+ \frac {\partial v}{\partial y}<br>$$</p>
+<h3 id="旋度"><a href="#旋度" class="headerlink" title="旋度"></a>旋度</h3><p>旋度表示围绕某一点的旋转速度，三维形式旋度是一个向量，二维形式的旋度是一个标量，旋度不能简单的进行维度推广，旋度符号可以理解为是梯度算子和一个矢量的叉乘。二维的旋度表示见式：<br>$$<br>\nabla \times \vec{u} = \nabla \times (u,v) = \frac{\partial v}{\partial x}- \frac {\partial u}{\partial y}<br>$$</p>
+<h3 id="拉普拉斯算子"><a href="#拉普拉斯算子" class="headerlink" title="拉普拉斯算子"></a>拉普拉斯算子</h3><p>拉普拉斯算子定义为梯度的散度，符号表示为  ，拉普拉斯算子是一个二阶的微分算子，偏微分方程  被称为拉普拉斯方程，右边如果是非零项则被称为泊松方程。拉普拉算子2维的表示见式：<br>$$<br>\nabla \cdot \nabla f =\frac{\partial^2 f}{\partial x^2}+ \frac {\partial^2 f}{\partial y^2}<br>$$</p>
+<h3 id="粘性"><a href="#粘性" class="headerlink" title="粘性"></a>粘性</h3><p>粘性是流体持续剪切变形时内部产生剪切力的性质，他宏观上表现为流体之间的动摩擦力，本质上是分子间的作用力，不同速度分子的化学键的断裂和重新生成，两层液体分子之间的牵扯和挤压。</p>
+<p>描述粘性使用两种粘性系数，动力粘性系数和运动粘性系数。</p>
+<p>$\mu $ 动力粘性系数表示相同变形率是的粘性大小， $ \upsilon $ 运动粘性系数表示的是相同加速度时的粘性大小，在Navier-Stokes方程中出现的即是运动粘性系数。</p>
+<h3 id="纳维-斯托克斯偏微分方程组"><a href="#纳维-斯托克斯偏微分方程组" class="headerlink" title="纳维-斯托克斯偏微分方程组"></a>纳维-斯托克斯偏微分方程组</h3><p>流体模拟面临的最重要的方程就是<strong>Navier-Stokes</strong>方程，不论以何种模拟方法，都是求解这个流体运动方程，见式：<br>$$<br>\frac{\partial \vec{u}}{\partial {t}} + \vec{u}\cdot\nabla\vec{u}+\frac{1}{\rho}\nabla p = \vec{g}+\upsilon \nabla \cdot \nabla \vec{u}<br>$$</p>
+<p>$$<br>\nabla \cdot \nabla \vec{u} = 0<br>$$</p>
+<p>该方程表示的是<strong>流体的动量方程</strong>，本质上是一个牛顿第二定律的形式，描述流体上的力是如何影响流体的运动的，流体粒子所受的力包括粒子的重力、粒子之间所给与的压力、流体粒子之间相互运动产生的粘滞阻力。</p>
+<p>Navier-Stokes方程是一个二阶非线性偏微分方程，求解起来非常复杂，在模拟领域使用计算机对NS方程进行求解，通常将方程分解为几个部分，然后按顺序推进。</p>
+<h3 id="拉格朗日视角和欧拉视角"><a href="#拉格朗日视角和欧拉视角" class="headerlink" title="拉格朗日视角和欧拉视角"></a>拉格朗日视角和欧拉视角</h3><p>拉格朗日视角和欧拉视角是研究流体和可变形固体运动的两大常用方法，其中拉格朗日视角一般对应粒子法，而欧拉视角一般对应网格法，近年来也出现了混合欧拉拉格朗日视角的方法。</p>
+<p><img src="/images/1728741-20210825000941155-1185202765.png" alt="img"></p>
+<p>拉格朗日视角基于粒子，将流体的数据，比如密度、质量、速度全部都记录在一个具体的粒子上，粒子会随着模拟的推进而改变位置，这个粒子就相当于一个数据采样点，更加具体一点理解，可以将每个粒子当成一个流体微团，拉格朗日方法模拟的是流体微团之间的相互作用得到的运动。<strong>这是一种对物质本身进行离散的NS方程求解方法</strong>，这种方法有很多的好处，比如：理解起来直观、模拟中的Advection部分是易于守恒的，但是拉格朗日视角下有不擅长的点，其中最大的就是粒子的邻居查找，这块需要使用空间的数据结构，每次执行算法前都需要更新粒子的邻居结构，这块查找邻居的时间一般是算法的瓶颈。</p>
+<p>欧拉视角基于网格，将流体的数据记录在一组固定的空间点上面，这个空间点上的属性的含义表示通过这个空间点的属性是多少，空间点位置是不会随着模拟的推进而改变的。<strong>这是一种对空间进行离散的NS方程求解方法</strong>，这种做法的好处就是他在处理整个场的数据是自然离散到了空间点上，在做邻居查找时也十分的遍历，可以通过固定的点加上偏移得到周围空间点的数据，但是欧拉视角在处理粒子运动时经常会出现能量耗散现象，导致整个流体看起来粘性很大，他并不想拉格朗日视角处理Advection那样的自然的守恒。</p>
+<p>两视角的主要区别就在于他们的采样点是否随着模拟推进而运动，胡渊鸣说：拉格朗日视角是随波逐流，欧拉视角是岿然不动。</p>
+<p>近年来最火的是MPM物质点法，他属于混合欧拉拉格朗日方法，但是笔者没有具体了解过所以就不多说了。</p>
+<h2 id="SPH"><a href="#SPH" class="headerlink" title="SPH"></a>SPH</h2><h3 id="原理及公式"><a href="#原理及公式" class="headerlink" title="原理及公式"></a>原理及公式</h3><p>Smoothed-Particle Hydrodynamics光滑粒子流体动力学是一种用来模拟连续介质动力学的离散方法，他属于拉格朗日法，最初用于天体物理领域，近年来在计算机图形学领域热度逐渐提高，常用来模拟流体运动。由于其无网格的特性，SPH在模拟复杂边界、扭曲拉伸、湍流上具有天然的优势。</p>
+<p>SPH的高层思想就是使用一堆随着模拟运动而更新位置的粒子去携带物理量，使用核函数来近似一个连续的场，某一个位置的物理量的值等于周围粒子的物理量的加权平均，核函数就是用来决定权值，距离该位置越近的权值越大。</p>
+<p><img src="/images/1728741-20210825001617231-1391453163.png" alt="img"></p>
+<p>变种非常多，比如：PBF、PCI-SPH、WCSPH等等，这里以WCSPH的算法作引入：</p>
+<p>其核心的表述求一点的属性的公式为，A表示一个抽象属性，可以是密度、压力、速度等物理量：<br>$$<br>A(x) = \sum _i A_i \frac{m_i}{\rho_i}W(||x-x_j||_2,h)<br>$$<br>除了属性的值还有计算属性的梯度的方法，这一点上他的梯度不是由上面的公式推导而来的，而是自己做的一个近似公式，但这条公式是对称的，使用时可以保证动量守恒，所以大家还是接受这条求梯度的公式：<br>$$<br>\nabla A_i =\rho_i \sum <em>j {(\frac{A_i}{\rho_i^2}+\frac{A_j}{\rho_j^2}) \nabla</em>{x_i} W(||x_i-x_j||_2,h))}<br>$$<br>有了这两条公式还需要流体相关的公式，需要计算流体粒子的加速度，还有模拟受到的各种粘性力、表面张力等物理定律描述的力，粒子的加速度使用材料导数，材料导数包括了两项，<strong>粒子速度随时间的变化</strong>和<strong>粒子速度在空间上</strong>的变化，在流体力学领域速度的材料导数表示为：<br>$$<br>\frac{Dv}{Dt} = -\frac{1}{\rho}\nabla p +g<br>$$<br>加速度公式涉及到压强梯度、密度以及外力g。</p>
+<p>计算密度就是用上面的抽象属性公式，将密度代入A：<br>$$<br>\rho(x) = \sum _i  {m_i}W(||x-x_j||_2,h)<br>$$<br>计算压强的公式使用了Tait方程，是一个理想气体状态方程的变种，不过实际使用还是用的SPH梯度算法来求的<br>$$<br>p = B((\frac{\rho}{\rho_0})^\gamma  - 1)<br>$$<br>B：bulk modulus，$ \rho_0$ 是一个理想密度，密度很大压强就很大，压强很高就会尝试推着周围的粒子离开自己。</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>有了这些公式，现在就可按照一个模拟的积分公式来确定整个SPH的算法流程：</p>
+<p>1、对每个粒子计算它所在位置的密度；</p>
+<p>2、对每个粒子计算它的压强梯度，进而得到它的Dv/Dt（其实就相当于求一个力）；</p>
+<p>3、Symplectic Euler Step半隐式欧拉方法推进模拟，先根据算出来的力更新速度，然后用更新过的速度来更新位移。</p>
+<p>如此一来SPH的流程遍完成了，这是WCSPH的做法，半隐式的时间积分经常需要考虑<strong>CFL条件</strong>问题，从材料刚度和粒子运动速度方面考虑有时间步长的限制，CFL条件是一个简单而直观的判断计算是否收敛的必要条件。它的比较直观的物理解释就是时间推进求解的速度必须大于物理扰动传播的速度，因为只有这样才能将物理上所有的扰动俘获到。不满足的话整个模拟容易发生数值爆炸等问题，满足CFL条件意味着当单位时间位移值和时间步长趋于取极限时，数值计算所求的解就会收敛到原微分方程的解。（有关CFL条件，笔者现在也不是理解很透彻，在代码里，他主要是使得我们的代码是变步长时间积分的，而不是定步长的）</p>
+<img src="/images/1728741-20210825003638690-1370205265.png" style="zoom:80%;">
+
+<h3 id="加速"><a href="#加速" class="headerlink" title="加速"></a>加速</h3><p>SPH算法在使用过程中一般最大瓶颈就在粒子的邻居搜索，因为粒子随模拟运动而运动，邻居在每次算法执行前都需要进行更新，要精确的找到一个粒子的周围粒子这个直接暴力的时间复杂度是O（n^2），为了降低这个瓶颈带来的影响加速SPH算法，一般会使用特殊的数据结构来存储粒子邻居，比如一个将位置信息通过哈希算法投射到一个数组中，一般的步骤是先将连续的粒子位置信息离散为几个大块，分成格子，然后做格子位置到粒子数组的映射，格子之间访问邻居非常简单只需要加上偏移量。这样一来一个粒子周围的粒子就等于他所在的格子的所有粒子加上周围一圈格子的所有粒子，每次算法结束步骤时进行维护，根据位置再对格子里的粒子做一个更新。</p>
+<p><img src="/images/1728741-20210825003805650-1940523338.png" alt="img"></p>
+<p>SPH邻居搜索的加速方法是很多，比如使用CPU并行进行邻居搜索、使用CUDA等GPU计算来加速。</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p><a target="_blank" rel="noopener" href="https://yangwc.com/2019/05/01/fluidSimulation/">https://yangwc.com/2019/05/01/fluidSimulation/</a></p>
+<p><a target="_blank" rel="noopener" href="https://diglib.eg.org/bitstream/handle/10.2312/PE.PG.PG2012short.029-034/029-034.pdf">https://diglib.eg.org/bitstream/handle/10.2312/PE.PG.PG2012short.029-034/029-034.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://book.douban.com/subject/35287308/">https://book.douban.com/subject/35287308/</a></p>
+<p>2021.8.25</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">飞翔的子明</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/25/physicsimulation-pbf-1/">http://example.com/2021/08/25/physicsimulation-pbf-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2021/12/05/hello-world/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">飞翔的子明</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E6%A8%A1%E6%8B%9F%E2%80%94%E2%80%94PBF%E6%B5%81%E4%BD%93%E6%A8%A1%E6%8B%9F%EF%BC%881%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">物理模拟——PBF流体模拟（1）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E5%8A%A8%E7%94%BB"><span class="toc-number">1.2.</span> <span class="toc-text">基于物理的动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E4%BD%93%E5%8A%A8%E7%94%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">流体动画</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E4%BD%93%E6%A8%A1%E6%8B%9F%E5%9F%BA%E7%A1%80"><span class="toc-number">1.3.</span> <span class="toc-text">流体模拟基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6"><span class="toc-number">1.3.1.</span> <span class="toc-text">梯度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%BA%A6"><span class="toc-number">1.3.2.</span> <span class="toc-text">散度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E5%BA%A6"><span class="toc-number">1.3.3.</span> <span class="toc-text">旋度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90"><span class="toc-number">1.3.4.</span> <span class="toc-text">拉普拉斯算子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%98%E6%80%A7"><span class="toc-number">1.3.5.</span> <span class="toc-text">粘性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%B3%E7%BB%B4-%E6%96%AF%E6%89%98%E5%85%8B%E6%96%AF%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">1.3.6.</span> <span class="toc-text">纳维-斯托克斯偏微分方程组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E8%A7%86%E8%A7%92%E5%92%8C%E6%AC%A7%E6%8B%89%E8%A7%86%E8%A7%92"><span class="toc-number">1.3.7.</span> <span class="toc-text">拉格朗日视角和欧拉视角</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPH"><span class="toc-number">1.4.</span> <span class="toc-text">SPH</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%AC%E5%BC%8F"><span class="toc-number">1.4.1.</span> <span class="toc-text">原理及公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.2.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E9%80%9F"><span class="toc-number">1.4.3.</span> <span class="toc-text">加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">1.5.</span> <span class="toc-text">引用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/05/hello-world/" title="Hello World"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2021/12/05/hello-world/" title="Hello World">Hello World</a><time datetime="2021-12-05T04:50:42.638Z" title="Created 2021-12-05 04:50:42">2021-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/25/physicsimulation-pbf-1/" title="物理模拟——PBF流体模拟（1）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="物理模拟——PBF流体模拟（1）"/></a><div class="content"><a class="title" href="/2021/08/25/physicsimulation-pbf-1/" title="物理模拟——PBF流体模拟（1）">物理模拟——PBF流体模拟（1）</a><time datetime="2021-08-25T00:00:00.000Z" title="Created 2021-08-25 00:00:00">2021-08-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 飞翔的子明</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
