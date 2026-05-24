@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unity Joint用法及案例 | Ziming's Blog</title><meta name="keywords" content="物理引擎,Unity,Joint"><meta name="author" content="飞翔的子明"><meta name="copyright" content="飞翔的子明"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="原文发布于博客园：Unity Joint用法及案例本篇文章主要讲解如何在Unity中使用Joint组件完成一些刚体物理之间的连接效果，并且讲解一个简单案例。  什么是Joint 官方文档介绍 Joint可以连接一个刚体与 另一个刚体 或世界空间某点，Joint可以通过施加力的方式来限制运动，joint中文翻译可以叫 约束。 在力学观点下，运动分为6个自由度，沿着xyz轴的位移，绕xyz轴的旋转。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Joint用法及案例">
+<meta property="og:url" content="https://aiden-potter.github.io/2023/03/20/unity-joint-usage-and-examples/index.html">
+<meta property="og:site_name" content="Ziming&#39;s Blog">
+<meta property="og:description" content="原文发布于博客园：Unity Joint用法及案例本篇文章主要讲解如何在Unity中使用Joint组件完成一些刚体物理之间的连接效果，并且讲解一个简单案例。  什么是Joint 官方文档介绍 Joint可以连接一个刚体与 另一个刚体 或世界空间某点，Joint可以通过施加力的方式来限制运动，joint中文翻译可以叫 约束。 在力学观点下，运动分为6个自由度，沿着xyz轴的位移，绕xyz轴的旋转。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aiden-potter.github.io/images/joint.png">
+<meta property="article:published_time" content="2023-03-20T11:18:00.000Z">
+<meta property="article:modified_time" content="2026-05-24T13:22:26.703Z">
+<meta property="article:author" content="飞翔的子明">
+<meta property="article:tag" content="物理引擎">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Joint">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aiden-potter.github.io/images/joint.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://aiden-potter.github.io/2023/03/20/unity-joint-usage-and-examples/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Unity Joint用法及案例',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-05-24 13:22:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/joint.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ziming's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Unity Joint用法及案例</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-20T11:18:00.000Z" title="发表于 2023-03-20 11:18:00">2023-03-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-24T13:22:26.703Z" title="更新于 2026-05-24 13:22:26">2026-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity/">Unity</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Unity Joint用法及案例"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>原文发布于博客园：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/FlyingZiming/p/17237420.html">Unity Joint用法及案例</a><br><br><br>本篇文章主要讲解如何在Unity中使用Joint组件完成一些刚体物理之间的连接效果，并且讲解一个简单案例。</p>
+</blockquote>
+<h1 id="什么是joint">什么是Joint</h1>
+<p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/current/Manual/Joints.html">官方文档介绍</a><br>
+Joint可以连接一个刚体与 另一个刚体 或世界空间某点，Joint可以通过施加力的方式来限制运动，joint中文翻译可以叫 约束。<br>
+在力学观点下，运动分为6个自由度，沿着xyz轴的位移，绕xyz轴的旋转。<br>
+通过将某些轴的位移和旋转给一些限制条件来达到限制刚体运动的目的。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191414157-1506812984.png" class=""></p>
+<p>Unity的Joint实际就是调用了<a target="_blank" rel="noopener" href="https://docs.nvidia.com/gameworks/content/gameworkslibrary/physx/guide/Manual/Joints.html">NVIDIA PhysX的PxConstraint</a>。</p>
+<h1 id="有哪些joint">有哪些Joint</h1>
+<p>PhysX提供了 Fixed Joint,Character Joint、Hinge Joint、Spring Joint等等。<br>
+这些种种的Joint其实都是基于通用的 Configurable Joint调配参数封装出来的，比如Fixed Joint就是将6自由度运动全部配置为lock，两只刚体加上了这个约束就会绑定在一起，没有任何相对运动。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191435176-2063124577.png" class=""><br>
+通过点击这个按钮我们可以看到一些用来调节joint参数的Gizmos。</p>
+<h1 id="joint计算原理">Joint计算原理</h1>
+<p>在Unity中 Joint是作为Component存在，他必须依附一个Go，这个被依附的Go需要有rigidbody，Joint会影响这个刚体，<br>
+通常我们指定另一个刚体到ConnectedBody上表示另一个被Joint影响的刚体，如果想要这个joint attached 刚体被固定在空间点上，那么conectedBody可以不填。</p>
+<h2 id="自由度配置">自由度配置</h2>
+<p>Joint拥有3个位移自由度和3个旋转自由度。相应的，在Configurable Joint中对应如下几个参数:</p>
+<ul>
+<li>位移有 - XMotion、YMotion、ZMotion</li>
+<li>旋转有 - AngularXMotion,AngularYMotion,AngularZMotion<br>
+在这6个自由度上，分配有以下三种配置:</li>
+<li>ConfigurableJointMotion.Free</li>
+<li>ConfigurableJointMotion.Locked</li>
+<li>ConfigurableJointMotion.Limited<br>
+其中Free意味着约束不存在。比如XMotion Free，代表了两个刚体在X轴向可以相对随意移动。<br>
+Locked则表示刚性约束，比如XMotion Locked代表了两个刚体在X轴向的相对位置被完全固定不可改变。(但在实际物理模拟中是存在被强行拆散可能性的，例如刚体穿插等等，会导致Solver失败)<br>
+Limited则意味着有限范围的偏差。当超出有效范围时，约束将会开始生效，企图使两个刚体回到正常偏差范围内。</li>
+</ul>
+<h2 id="axis与anchor">Axis与Anchor</h2>
+<p>Joint默认会以这个attach的GO的Transform坐标系作为Joint的六自由度坐标系，如果我们想要一个另外的坐标系，需要填Axis和SecondAxis，他会作为这个body transform的child而存在。</p>
+<p>然后是使用Joint是最容易出错的点——Anchor<br>
+这里我们画一幅图来说明<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191501330-874845571.png" class=""></p>
+<p>cubeA 身上放了一个Joint组件，连接着cubeB，cubeA的anchor放在蓝圈位置，joint的坐标系的xy是红绿线。<br>
+anchor实际上有两个，一个连着A 叫Anchor，另一个连着B，叫ConnectedAnchor，一般我们都会勾选AutoConfigureConnectedAnchor让两个anchor在一起。<br>
+从anchor到A的连线在joint游戏开始时 anchor到重心的距离会被记录，可以看做一个不可变形的刚杆（如果anchor在某个cubeA的中心那么属于cubeA到anchor就没有钢杆了），<br>
+游戏运行时anchor和conectedanchor会发生相对运动， 以joint坐标系为准，这里我们假定没有自己配置Axis，那么joint坐标系就是A的坐标系，<br>
+如果此时我们配置了Joint的XYZ的Motion为lock，其他angular xyz motion为free，并且把A的刚体配置成Kinematic（让他不受重力下落影响，固定在空中），<br>
+那么就会得到一根钢杆一头在蓝圈 一头在cube的重心的自由旋转运动，拽着A去甩B其实有点像双节棍。</p>
+<p>如果我们配置了angular xyz为lock，xyz的motion中某个轴 比如Y轴为free，那么便可以得到沿着y轴的滑动一样的效果。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191536802-1446028532.png" class=""></p>
+<p>通过对于不同维度的控制我们可以得到很多不一样的效果。</p>
+<h2 id="limit与spring">Limit与Spring</h2>
+<p>整个计算流程包括三步<br>
+1、计算两物体轴向距离<br>
+2、将轴向距离投影到joint空间下<br>
+3、调节轴向距离满足joint参数</p>
+<p>如果我们想让两个anchor的某些轴向的位移在一个范围里运动，那便可以将这几个轴的motion调整为limit，这种两个anchor的距离（注意是距离，算的是两点作差的值）会被限制在limit内，<br>
+如果把A固定，B自由下落那么B到了某个点位就会啪的一下卡住，好像撞到了地面一样，实际上是被Joint拉住了。<br>
+如果我们想他在这个边缘位置不要这么生硬的停下而是有弹性、柔和一点的运动，那么可以配置spring值。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191543875-1016674905.png" class=""></p>
+<p>需要注意的是xyz都是共享一个limit的，只存在anchor之间 按线运动、按圆圈运动、在球体范围内运动三种情况。<br>
+默认spring是0，表示没有任何弹簧就是一个很刚性的约束（看起来非常硬）。<br>
+damper标志了弹簧震动的阻尼系数，阻尼会根据刚体运动速度产生一个反向的作用力，以降低震动的频率。</p>
+<p>angular limit和其spring的配置原理也是一样的，只不过是计算轴向距离变成计算两个rotation的差异，另外angularlimit关于主轴的计算可定制性更强，可以存在最小负角和最大正角，其他两个轴则定义相对限制多。<br>
+按两个方向分别进行定义是由现实意义的，因为人的很多关节都是这样的。比如你的膝关节、肘关节都只能往一个角度弯曲，而不能反向弯曲。这也决定了当我们使用Joint来模拟物理骨骼时，必须正确的分配Joint主轴朝向。<br>
+至于为什么不每个轴都分配最大和最小角度，可能是有数学限制吧，这里博主也不知道。</p>
+<h2 id="drive与target">Drive与Target</h2>
+<p>上述所讲的anchor与anchor之间的限制主要还是一种受到外力导致运动后 应该怎么限制运动，<br>
+其实Joint还提供了一种内力驱动来让Joint对两个刚体产生力，很多的结构比如挖掘机旋转关节，车轮的悬挂系统都会输出一些内部的力对外做功。<br>
+要配置这些力我们就要用到Drive和Target。<br>
+首先一般用drive的轴的自由度配置都会配成free，然后通过配置target position、target rotation来对两anchor连接的刚体施加力。<br>
+主要分为几个步骤<br>
+1、计算两个刚体的坐标差异<br>
+2、将差异投影到joint坐标系<br>
+3、计算差异和配置的target的距离<br>
+4、为了让距离满足0，会对两刚体求解施加力</p>
+<pre><code class="language-c#">PositionRelative = PositionOfConnected - PositionOfBinded
+ErrorOfPosition = TargetPosition - PositionRelative 
+F = Spring * ErrorOfPosition - Damp * Velocity
+</code></pre>
+<ul>
+<li>PositionOfBinded为Joint所绑定的刚体Anchor位置</li>
+<li>PositionOfConnected为另一个连接的刚体的Anchor位置</li>
+<li>PositionRelative为当前两者位置之差，而TargetPosition则为预期之差</li>
+<li>ErrorOfPosition为预期和当前的差项，Joint将根据这个差项产生一个弹性力作用于两个刚体，使得PositionRelative在迭代中逼近TargetPosition</li>
+</ul>
+<p>关于Rotation<br>
+差异和target 计算的部分包括：</p>
+<pre><code class="language-C#">ErrorOfRotation = TargetRotation - (RotationRelative - RotationRelativeInited)
+</code></pre>
+<ul>
+<li>RotationOfBinded为Joint所绑定刚体的旋转量</li>
+<li>RotationOfConnected为连接刚体的旋转量</li>
+<li>RotationRelative = RotationOfConnected - RotationOfBinded 为两者之差，也可以理解为Connected相对于Binded的旋转量。</li>
+<li>RotationRelativeInited为初始情况下的RotationRelative</li>
+</ul>
+<p>所有的Drive，都由以下结构构成:</p>
+<ul>
+<li>PositionSpring - 表示驱动力的弹性系数</li>
+<li>PositionDamper - 表示驱动力的阻尼系数</li>
+<li>MaximumForce - 表示最大驱动力值。即意味着F不随着Error无限增大<br>
+利用以上的定义，将会使用以下公式产生弹性力:<br>
+<span class="math inline">\(F_{drive}=Spring*E - Damp * dE/dt\)</span><br>
+E代表了当前状态与目标状态之差。</li>
+</ul>
+<p>可以用代码运行时去修改target position、target rotation来获得一些有趣的物理效果。</p>
+<h1 id="joint应用案例">Joint应用案例</h1>
+<p>讲解一个基于Joint的吊车的实现<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191603115-268809491.png" class=""></p>
+<h2 id="车轮">车轮</h2>
+<h3 id="旋转">旋转</h3>
+<p>车轮我们使用了capsule collider，连接在box拼接的车身的刚体上<br>
+然后让capsule collider关于轴心方向的轴的旋转是free的，其他旋转都lock，接着我们希望车轮有一点轻微的悬挂系统，如果此时我们把joint组件加在了车轮上，使用车轮坐标系，我们会发现joint没法找到一个稳定的上方向，这导致我们决定将joint加在车身，让joint坐标系跟车身保持一致，维持一个相对稳定的Joint坐标系。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191609452-162494252.png" class=""></p>
+<p>红色的圆圈表示这个joint绑定的东西在joint坐标系的x轴可以自由的旋转。</p>
+<p>这里的anchor配置相当重要，anchor位置为车轮的中心在车身坐标系下的相对位置，这里我通过编辑器写了一点计算代码配置anchor位置。</p>
+<p>然后我们通过控制车轮的x轴角速度便可以实现一个摩擦力驱动的车轮了。</p>
+<h3 id="悬挂系统">悬挂系统</h3>
+<p>我们xyz的linear motion都是lock住的，这样遇到一些凸起的路面我们轮子就和车身的相对距离永远不变，这样不符合真实的感觉，真实的感觉应该是轮子会往上有一点抬升，而车身不会有y轴方向的运动。</p>
+<p>这里我们的y轴和车身绑定已经相当稳定，我们可以把y轴配置成free，然后把yDrive调大，target position是000，其实也就是让这个车轮回归初始位置的意思，这样当车轮支撑车身时候车身会有重力影响产生一定的下沉同时有被举起的感觉，悬空时车轮也会往下掉一点，遇到障碍物是压过了障碍物的轮子会比其他轮子往上抬升一点。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191619736-648823650.png" class=""></p>
+<p>总体运动起来 车身的震动幅度相比没有悬挂系统更小一点。</p>
+<h2 id="吊臂">吊臂</h2>
+<h3 id="旋转-1">旋转</h3>
+<p><img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191629759-400780474.png" class=""></p>
+<p>吊车的大臂可以以转台为中心来做旋转，我们以y为上方向 配置angular y motion为free，然后在运行时根据输入来配置target rotation，可以实现大臂绕着一个点旋转，通过把drive和damp同时拉大可以获得一个有些重量感的吊臂。</p>
+<h3 id="抬升">抬升</h3>
+<p><img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191637135-2082886996.png" class=""></p>
+<p>抬升的做法有一点trick，对于一般的吊车这里通常是液压的，由下面的浅红色小臂通过液压给力然后把红色的大臂推出去。大臂配置一个绕轴旋转。<br>
+但是笔者经过尝试，发现这种通过给力的方式在车子运动起来的同时大臂会摇摇晃晃，因为是通过力来作用的，就很容易出现弹簧一样的感觉，并且也不利于控制具体的抬升角度。</p>
+<p>于是这里的做法是大臂尾部两个joint得到一个绕轴旋转，绕轴旋转的joint通过配置drive 和 target rotation来让吊臂产生某个角度的抬升。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191648064-1768205642.png" class=""></p>
+<p>接着我们制作了一个小臂的一头连着大臂一头连着转台，连着大臂的那端可以沿着小臂轴向有位移，形成了一个动轨滑块结构。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191657759-234366063.png" class=""></p>
+<p>然后让这个小臂对大臂施加一个拉力，这个力往下，而上一个joint给的力往上，以此可以减少大臂的摇晃感。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191701918-1921968258.png" class=""></p>
+<h2 id="吊钩">吊钩</h2>
+<h3 id="伸长">伸长</h3>
+<p>最后是吊钩，吊钩其实就是让这个钩子可以沿着一条轴伸长，始终日常垂直往下，这里我显示给钩子摆了一个垂直往下的姿势，y轴向上，然后joint组件添加在钩子上，anchor一头绑在吊臂上，一头绑在吊钩center，<br>
+允许y轴可以free运动，用ydrive来分离两个anchor，驱动吊钩往下运动，这样就得到了一个绕着初始点旋转的一根弹性杆，用来做伸长后的吊钩看起来还行。<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191712639-2063845088.png" class=""></p>
+<p>除了这些外，给一些angular的drive并且target rotation配置成000，可以让吊钩在空中甩来甩去时更快的回到垂直向下的初始旋转位置。</p>
+<h3 id="吸附">吸附</h3>
+<p>最后吊钩要把东西吊起来，可以做一个范围检测，运行时创建一个lock的joint 把钩子和被钩的东西绑在一起，然后再收起吊绳，我们就能吊起东西了！<br>
+<img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191718327-1518962462.png" class=""></p>
+<p><img src="/2023/03/20/unity-joint-usage-and-examples/1728741-20230320191722389-1268246759.png" class=""></p>
+<h2 id="总结">总结</h2>
+<p>对绳子不太满意，因为有点弹性杆的感觉，实际上这种拉的紧绷的钢性绳子相当难模拟，拉起时候的感觉也会有弹来弹去的味道，暂时没有想到很好的解决办法</p>
+<h1 id="引用">引用</h1>
+<p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/current/Manual/class-ConfigurableJoint.html">https://docs.unity3d.com/cn/current/Manual/class-ConfigurableJoint.html</a><br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/380394542">https://zhuanlan.zhihu.com/p/380394542</a></p>
+<p>flyingziming<br>
+2023.3.20</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">飞翔的子明</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://aiden-potter.github.io/2023/03/20/unity-joint-usage-and-examples/">https://aiden-potter.github.io/2023/03/20/unity-joint-usage-and-examples/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Aiden-Potter.github.io" target="_blank">Ziming's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/">物理引擎</a><a class="post-meta__tags" href="/tags/Unity/">Unity</a><a class="post-meta__tags" href="/tags/Joint/">Joint</a></div><div class="post_share"><div class="social-share" data-image="/images/joint.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/06/game-simulation-position-based-dynamics/"><img class="prev-cover" src="/images/PBD.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">游戏模拟——Position based dynamics</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/25/physicsimulation-pbf-1/"><img class="next-cover" src="/images/pbf-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">物理模拟——PBF流体模拟</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/04/06/game-simulation-position-based-dynamics/" title="游戏模拟——Position based dynamics"><img class="cover" src="/images/PBD.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-06</div><div class="title">游戏模拟——Position based dynamics</div></div></a></div><div><a href="/2021/08/25/physicsimulation-pbf-1/" title="物理模拟——PBF流体模拟"><img class="cover" src="/images/pbf-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div><div class="title">物理模拟——PBF流体模拟</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">飞翔的子明</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/146290005" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://github.com/Aiden-Potter" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/fei-xiang-de-zi-ming" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.cnblogs.com/FlyingZiming" target="_blank" title="博客园"><i class="fas fa-rss"></i></a><a class="social-icon" href="https://www.gcores.com/users/586569/talks" target="_blank" title="Gcores"><i class="fas fa-gamepad"></i></a><a class="social-icon" href="mailto:ziming0327@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Keep curious</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFjoint"><span class="toc-number">1.</span> <span class="toc-text">什么是Joint</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9Bjoint"><span class="toc-number">2.</span> <span class="toc-text">有哪些Joint</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#joint%E8%AE%A1%E7%AE%97%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">Joint计算原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%94%B1%E5%BA%A6%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text">自由度配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#axis%E4%B8%8Eanchor"><span class="toc-number">3.2.</span> <span class="toc-text">Axis与Anchor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#limit%E4%B8%8Espring"><span class="toc-number">3.3.</span> <span class="toc-text">Limit与Spring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drive%E4%B8%8Etarget"><span class="toc-number">3.4.</span> <span class="toc-text">Drive与Target</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#joint%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">Joint应用案例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%A6%E8%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">车轮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC"><span class="toc-number">4.1.1.</span> <span class="toc-text">旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%AC%E6%8C%82%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.1.2.</span> <span class="toc-text">悬挂系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8A%E8%87%82"><span class="toc-number">4.2.</span> <span class="toc-text">吊臂</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC-1"><span class="toc-number">4.2.1.</span> <span class="toc-text">旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%AC%E5%8D%87"><span class="toc-number">4.2.2.</span> <span class="toc-text">抬升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8A%E9%92%A9"><span class="toc-number">4.3.</span> <span class="toc-text">吊钩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%B8%E9%95%BF"><span class="toc-number">4.3.1.</span> <span class="toc-text">伸长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%B8%E9%99%84"><span class="toc-number">4.3.2.</span> <span class="toc-text">吸附</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">引用</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/31/flying-game-dev-july/" title="飞行游戏开发记录——七月"><img src="/images/bird.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="飞行游戏开发记录——七月"/></a><div class="content"><a class="title" href="/2023/07/31/flying-game-dev-july/" title="飞行游戏开发记录——七月">飞行游戏开发记录——七月</a><time datetime="2023-07-30T19:15:00.000Z" title="发表于 2023-07-30 19:15:00">2023-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/06/game-simulation-position-based-dynamics/" title="游戏模拟——Position based dynamics"><img src="/images/PBD.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="游戏模拟——Position based dynamics"/></a><div class="content"><a class="title" href="/2023/04/06/game-simulation-position-based-dynamics/" title="游戏模拟——Position based dynamics">游戏模拟——Position based dynamics</a><time datetime="2023-04-06T10:40:00.000Z" title="发表于 2023-04-06 10:40:00">2023-04-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/20/unity-joint-usage-and-examples/" title="Unity Joint用法及案例"><img src="/images/joint.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unity Joint用法及案例"/></a><div class="content"><a class="title" href="/2023/03/20/unity-joint-usage-and-examples/" title="Unity Joint用法及案例">Unity Joint用法及案例</a><time datetime="2023-03-20T11:18:00.000Z" title="发表于 2023-03-20 11:18:00">2023-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/25/physicsimulation-pbf-1/" title="物理模拟——PBF流体模拟"><img src="/images/pbf-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="物理模拟——PBF流体模拟"/></a><div class="content"><a class="title" href="/2021/08/25/physicsimulation-pbf-1/" title="物理模拟——PBF流体模拟">物理模拟——PBF流体模拟</a><time datetime="2021-08-25T00:00:00.000Z" title="发表于 2021-08-25 00:00:00">2021-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/07/31/source-of-meaning/" title="意义的来源是什么？"><img src="/images/meaning.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="意义的来源是什么？"/></a><div class="content"><a class="title" href="/2019/07/31/source-of-meaning/" title="意义的来源是什么？">意义的来源是什么？</a><time datetime="2019-07-31T07:25:00.000Z" title="发表于 2019-07-31 07:25:00">2019-07-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By 飞翔的子明</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script id="canvas_nest" defer="defer" color="255,255,255" opacity="0.8" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

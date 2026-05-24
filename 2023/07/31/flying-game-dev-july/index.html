@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>飞行游戏开发记录——七月 | Ziming's Blog</title><meta name="keywords" content="游戏开发,独立游戏,飞行游戏"><meta name="author" content="飞翔的子明"><meta name="copyright" content="飞翔的子明"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="原文发布于博客园：飞行游戏开发记录——七月  前言 本系列是我对于正在开发的3d小鸟飞行游戏的记录，这个项目的重点是找到小鸟飞行的感觉，虽说是记录，但其实发出来其实也是为了寻得一些反馈，好让自己可以继续做下去，每个月都会发一篇看看。 另外，我对于美术方面的知识比较缺乏，目前定的画风还是lowpoly，比较想参考OuterWilds,如果你也想做一款这样的游戏，感兴趣的同好也可以与我联系。 有关立">
+<meta property="og:type" content="article">
+<meta property="og:title" content="飞行游戏开发记录——七月">
+<meta property="og:url" content="https://aiden-potter.github.io/2023/07/31/flying-game-dev-july/index.html">
+<meta property="og:site_name" content="Ziming&#39;s Blog">
+<meta property="og:description" content="原文发布于博客园：飞行游戏开发记录——七月  前言 本系列是我对于正在开发的3d小鸟飞行游戏的记录，这个项目的重点是找到小鸟飞行的感觉，虽说是记录，但其实发出来其实也是为了寻得一些反馈，好让自己可以继续做下去，每个月都会发一篇看看。 另外，我对于美术方面的知识比较缺乏，目前定的画风还是lowpoly，比较想参考OuterWilds,如果你也想做一款这样的游戏，感兴趣的同好也可以与我联系。 有关立">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aiden-potter.github.io/images/bird.png">
+<meta property="article:published_time" content="2023-07-30T19:15:00.000Z">
+<meta property="article:modified_time" content="2026-05-24T13:21:05.521Z">
+<meta property="article:author" content="飞翔的子明">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="独立游戏">
+<meta property="article:tag" content="飞行游戏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aiden-potter.github.io/images/bird.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://aiden-potter.github.io/2023/07/31/flying-game-dev-july/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '飞行游戏开发记录——七月',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-05-24 13:21:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bird.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ziming's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">飞行游戏开发记录——七月</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-30T19:15:00.000Z" title="发表于 2023-07-30 19:15:00">2023-07-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-24T13:21:05.521Z" title="更新于 2026-05-24 13:21:05">2026-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="飞行游戏开发记录——七月"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>原文发布于博客园：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/FlyingZiming/p/17592482.html">飞行游戏开发记录——七月</a></p>
+</blockquote>
+<h1 id="前言">前言</h1>
+<p>本系列是我对于正在开发的3d小鸟飞行游戏的记录，这个项目的重点是找到小鸟飞行的感觉，虽说是记录，但其实发出来其实也是为了寻得一些反馈，好让自己可以继续做下去，每个月都会发一篇看看。<br>
+另外，我对于美术方面的知识比较缺乏，目前定的画风还是lowpoly，比较想参考OuterWilds,如果你也想做一款这样的游戏，感兴趣的同好也可以与我联系。</p>
+<h1 id="有关立项">有关立项</h1>
+<p>开始弄自己的项目，其实最开始的立项往往是最困难的，因为我们面对的是一个长期的自己一定认可的东西，虽然说很多人都告诉我一定要做短的完整的东西，但是我自己想过之后觉得感觉自己其实做过不少GameJam小玩法，今年CIGA自己也和朋友做了个小的3D游戏，程序上我大体是有信心的，于是还是打算整一个可以长期弄下去，不断迭代的项目，这也是我这段时间对游戏制作的理解：定一个方向，不断做迭代，评价成果，修正方向，循环往复。<br>
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DN411m7Ka/">CGJ2023-ViewToucher</a><br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731030918638-1451149694.png" class=""></p>
+<p>为了这个长期项目，其实还是费了不少工夫，毕竟他是一个无中生有的过程，现在我要讲的是七月之前的故事。<br>
+最开始的时候我想做一个涌现式的游戏，做一个模拟游戏，希望通过定义基础规则，定义人、动物的行为，来让他们涌现出集体行为，甚至产生文化等等，畅想这些东西确实给我带来了不小的期待，建立一套万物模拟的规则，然后让玩家作为观察者代入进去，影响这个世界，想做出灵活的动态规划的AI能自己产生游戏内容。<br>
+为了达到这个目标，我研究了chaos系统、GOAP、泰南的体验引擎、游戏机制设计、塞尔达GDC以及UnityDOTS，并且找了可以参考的游戏：RimWorld、WorldBox等，把第一阶段的目标定成了复刻WorldBox。<br>
+直接说结果，这个项目在折腾了一段时间原型后放弃了，一开始研究涌现的产生还是很有意思，涌现式的机制往往输出会成为下一次输入，但是后来发现自己其实对于涌现设计的一种执着，通过阅读更多知识我改变了想法，现在更加认为现代游戏是涌现式机制和非涌现机制的结合，是离散机制和连续机制的结合，机制各有特点，作为设计师更应该是了解特点在适当的地方使用，单方面的崇拜都是不可取的，这中间遇到最大的问题还是做了一个这样的模拟、涌现系统，我们应该玩什么？</p>
+<p>当然，能做到复刻worldbox、环世界也很好，国内其实也有不少团队在基于这类框架做游戏，这里我了解到的有：《了不起的修仙模拟器》、《大荒先民》。<br>
+在我还有这个制作涌现游戏的想法时候我还给大荒先民制作组投了简历，可惜别人不缺人，不过也借着这个投简历，我好好分析了一波我的游戏成分，同时我发现他们的定位其实非常清晰，主创也是个重度的模拟经营玩家，知道这类玩家在玩什么。</p>
+<p>搞清楚自己的游戏成分，实际上是整个立项中我觉得最重要的部分，这次我发现我基本不玩模拟经营，环世界 20小时，worldbox 6小时，其他p社游戏，买过群星但是基本没玩进去，就连目标感清晰的开罗游戏我都会觉得有点无聊，数据量超大的模拟的游戏，光是看着资源、规划各个模块的行为，我就已经晕了，只能说是个人喜好确实只能到这里了。<br>
+我也整理了自己的游戏成分，moba竞技、ARPG、ACT、回合制、地牢rouge以及一些独立圈比较知名的：witness、gorogoa、journey、undertale、ori、outer wilds、lovechoice、极乐迪斯科。同时在这些游戏里我也找到了我目前阶段最欣赏的设计，将叙事融入进交互系统，简称 系统叙事，他们可以没有文字，但是你会觉得有一种交互有种叙事感，或者游戏主题藏在交互中，只有一遍遍的玩才能理解这些精巧的设计。</p>
+<p>于是我决定做一款主打飞行的游戏，将我想讲的融入到飞行这个行为中，journey 、abzu 那种篇写意的画风，想到飞行主要还是直接研究涌现系统也研究了群鸟飞行，觉得这个行为很有意思，如果可以控制一只鸟，带着一群鸟飞，我会觉得很有意思，是一个我倾向于在游戏中使用的意象。<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731030904025-1858769354.png" class=""></p>
+<h1 id="进展">进展</h1>
+<p>目前只是定下了大方向，细分的玩法还没完全定好，画了张游戏的运行草图，中间红色是你控制的鸟，绿色是伙伴，之后越做，整个游戏会越有画面感。<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731030943585-1445213252.png" class=""></p>
+<p>我也做了一些项目的结构设计，不过这里不太好讲，等之后定下来，更多成果了再继续记录。</p>
+<h2 id="unity还是unreal">Unity还是Unreal</h2>
+<p>六月底时候主要在做基础的技术选型，有关3d场景下的移动组件，其实本来想用Unreal，因为感觉基于他的移动组件就能实现很多功能了，Unreal的框架也很多功能适配我的游戏类型，在上层做东西能接受其实，不过后来想到目前就我一个人，对项目的把控还是很重要，已经很久没碰过Unreal源码，熟悉程度不如unity，基于unity做些自己的模块会更加合适。<br>
+实不相瞒，这段时间我非常想用GODOT，感觉这引擎挺有潜力，还是完全开源，大概看了一周，觉得demo能看的不多，以及感觉一些工具链不很齐全（统一的gizmos开关、play in editor），完全熟悉也需要不少时间，遂放弃了这个想法。</p>
+<h2 id="移动组件">移动组件</h2>
+<p>移动组件，研究了动力学和运动学的移动组件，可以说都能实现功能，但是我倾向于更稳定的、可控制性的移动组件，所以最后还是选择了折腾，整一个Kinematic的Character Controller，也就是业内说的KCC，研究了两个开源的插件，写出了一个简单的基本能用的KCC组件，但是遇到一些情况有很多不太满意的运动，目前是已经将自己写的版本封存，先用kcc 商店插件来实现我的基本功能，后续等有更多理解了，继续来完善移动组件。<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731030956501-1307987226.png" class=""></p>
+<h2 id="飞行模型">飞行模型</h2>
+<p><img src="/2023/07/31/flying-game-dev-july/1728741-20230731031032981-36611358.png" class=""></p>
+<p>阅读一些前辈的开源飞行demo，飞机、战斗机，学到很多，小鸟模型可以是这个模型的优化改进版本，主要改进的方向是控制感，完全真实模拟的飞机控制感相对差很多，想飞到一个具体的地方会相对困难，并且又大量的视角翻转，鸟类的俯仰角其实是基本90度以内，很难出现直线攀升的情况。<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731031056799-671044196.png" class=""></p>
+<h2 id="3c分析">3C分析</h2>
+<p>整个3C的设计目的还是让玩家可以很流畅的操控角色浏览世界，同时也得保证角色的代入感。<br>
+分析了一下一般KCC人物的运动，找到了一个之前玩的超人游戏，<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731031125784-473825515.png" class=""></p>
+<p>也看了一下风之旅人的3C，感觉他的镜头运动更有学问，有设计感的，流畅的，无缝的，电影语言的。<br>
+同时这段时间也玩了ABZU工作室的新作，很棒的跑酷游戏，跑酷是在地面上跑+跳跃+滑翔+振翅，射箭射到一些特定的东西（有辅助瞄准&nbsp;可以增加跑步的体力条。<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731031138520-527592878.png" class=""></p>
+<p>人在跑的时候鸟在周围跟着&nbsp;&nbsp;基本上飞的很舒服。</p>
+<h2 id="搬家">搬家</h2>
+<p>离开上海，来到广州，生活成本相对低一点，广州我认识的朋友多些，换个环境重新开始。</p>
+<h2 id="第一版3c">第一版3C</h2>
+<p>第一版3C：目前实现可以基于两翼与风速的角度影响升力大小，基于飞机模型优化实现，之后继续完善，支持小鸟的各种动作<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731031213155-882326246.png" class=""></p>
+<p>运动录制的Debug工具：做这个模型的时候遇到不少的BUG，因此一天左右开发了个录制回放工具，可以录制运动过程，记录中间变量<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731031243679-751579873.png" class=""></p>
+<p>粉色线是运动轨迹，感觉光看运动轨迹形成的形状也挺有意思的<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731031304835-462362033.png" class=""></p>
+<h1 id="规划">规划</h1>
+<p>八月份到中旬应该会一直完善这套飞行3C，想支持各种鸟的动作，目前做的等于是做了个滑翔动作。<br>
+<img src="/2023/07/31/flying-game-dev-july/1728741-20230731031329067-996316582.png" class=""></p>
+<h1 id="困难">困难</h1>
+<p>目前遇到两块比较大的困难，第一大困难是关于过去，时不时会有一些不坚定的想法，比如重新去找份工，好好工作赚钱，赚多一点再来，感觉上了两次班都有不少遗憾，一次是因为失去了耐心，一次是因为过于傲慢，现在都付出了代价，我也都接受，每每想到这些我就会觉得要不还是回去上班。<br>
+不过我最后还是说服了自己，怎么样我都得把这个游戏做出来，做到我满意，即使是感觉到没啥希望也要努力去做，要相信自己，有一个强烈的创作欲望在指引我。</p>
+<p>第二大困难就是关于未来，感觉自己有知识储备上的问题，比如美术工作流，但是感觉边学边做是很正常的，但是就是要做好推翻重来的准备，包括接下来可能还要花些时间去熟悉一些模块，然后就是对项目有些不自信，容易去自己和别的项目去比，怎么都感觉自己很不入流， <strong>你心里认为 哪怕你做出来了 也是个不如风之旅人的垃圾 没啥意思</strong>，然后就是经历了这一年感觉到以后找工作会更困难。<br>
+对于这些，可以统称为对未来自己的质疑，目前也有一位监督我项目的同伴，唤作马宝，马宝直接地指出：</p>
+<blockquote>
+<p>这是很现实 经常会出现的情况<br>
+现实中有人会认为，不如风之旅人只是暂时的，迟早会超越<br>
+也有人认为，不如就不如，能把东西做出来我就满足了<br>
+也有人认为，我就赚钱，不管垃圾不垃圾<br>
+你把自己的作品和风之旅人放在一杆秤上去比了 甚至是，你和陈星汉 放上了秤砣比<br>
+我只会觉得能把这东西做出来就很牛逼了<br>
+如果不如说明还有上升空间，而且哪怕不如，游戏也是个木桶，有很多操作空间的<br>
+<strong>重点是明确目标，一直朝着目标迈进  这才是创作者之魂</strong><br>
+哪怕你最终无法靠自己做游戏养活自己<br>
+你做出了东西再去上班，也是加分的 ，还过了创作游戏的瘾</p>
+</blockquote>
+<h1 id="后记">后记</h1>
+<p>伴随着一些对自己的质疑，以及一些很久没有再遇到的紧张感，我上路了，这是第一个月，正经完成一次开发记录，写完也已经是夜深，明天继续做项目了。</p>
+<p>2023.7.31</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">飞翔的子明</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://aiden-potter.github.io/2023/07/31/flying-game-dev-july/">https://aiden-potter.github.io/2023/07/31/flying-game-dev-july/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Aiden-Potter.github.io" target="_blank">Ziming's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><a class="post-meta__tags" href="/tags/%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F/">独立游戏</a><a class="post-meta__tags" href="/tags/%E9%A3%9E%E8%A1%8C%E6%B8%B8%E6%88%8F/">飞行游戏</a></div><div class="post_share"><div class="social-share" data-image="/images/bird.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/04/06/game-simulation-position-based-dynamics/"><img class="next-cover" src="/images/PBD.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">游戏模拟——Position based dynamics</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">飞翔的子明</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/146290005" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://github.com/Aiden-Potter" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/fei-xiang-de-zi-ming" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.cnblogs.com/FlyingZiming" target="_blank" title="博客园"><i class="fas fa-rss"></i></a><a class="social-icon" href="https://www.gcores.com/users/586569/talks" target="_blank" title="Gcores"><i class="fas fa-gamepad"></i></a><a class="social-icon" href="mailto:ziming0327@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Keep curious</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E7%AB%8B%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">有关立项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E5%B1%95"><span class="toc-number">3.</span> <span class="toc-text">进展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unity%E8%BF%98%E6%98%AFunreal"><span class="toc-number">3.1.</span> <span class="toc-text">Unity还是Unreal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%BB%84%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">移动组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%9E%E8%A1%8C%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">飞行模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3c%E5%88%86%E6%9E%90"><span class="toc-number">3.4.</span> <span class="toc-text">3C分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AC%E5%AE%B6"><span class="toc-number">3.5.</span> <span class="toc-text">搬家</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%89%883c"><span class="toc-number">3.6.</span> <span class="toc-text">第一版3C</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%84%E5%88%92"><span class="toc-number">4.</span> <span class="toc-text">规划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%B0%E9%9A%BE"><span class="toc-number">5.</span> <span class="toc-text">困难</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">6.</span> <span class="toc-text">后记</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/31/flying-game-dev-july/" title="飞行游戏开发记录——七月"><img src="/images/bird.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="飞行游戏开发记录——七月"/></a><div class="content"><a class="title" href="/2023/07/31/flying-game-dev-july/" title="飞行游戏开发记录——七月">飞行游戏开发记录——七月</a><time datetime="2023-07-30T19:15:00.000Z" title="发表于 2023-07-30 19:15:00">2023-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/06/game-simulation-position-based-dynamics/" title="游戏模拟——Position based dynamics"><img src="/images/PBD.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="游戏模拟——Position based dynamics"/></a><div class="content"><a class="title" href="/2023/04/06/game-simulation-position-based-dynamics/" title="游戏模拟——Position based dynamics">游戏模拟——Position based dynamics</a><time datetime="2023-04-06T10:40:00.000Z" title="发表于 2023-04-06 10:40:00">2023-04-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/20/unity-joint-usage-and-examples/" title="Unity Joint用法及案例"><img src="/images/joint.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unity Joint用法及案例"/></a><div class="content"><a class="title" href="/2023/03/20/unity-joint-usage-and-examples/" title="Unity Joint用法及案例">Unity Joint用法及案例</a><time datetime="2023-03-20T11:18:00.000Z" title="发表于 2023-03-20 11:18:00">2023-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/25/physicsimulation-pbf-1/" title="物理模拟——PBF流体模拟"><img src="/images/pbf-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="物理模拟——PBF流体模拟"/></a><div class="content"><a class="title" href="/2021/08/25/physicsimulation-pbf-1/" title="物理模拟——PBF流体模拟">物理模拟——PBF流体模拟</a><time datetime="2021-08-25T00:00:00.000Z" title="发表于 2021-08-25 00:00:00">2021-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/07/31/source-of-meaning/" title="意义的来源是什么？"><img src="/images/meaning.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="意义的来源是什么？"/></a><div class="content"><a class="title" href="/2019/07/31/source-of-meaning/" title="意义的来源是什么？">意义的来源是什么？</a><time datetime="2019-07-31T07:25:00.000Z" title="发表于 2019-07-31 07:25:00">2019-07-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By 飞翔的子明</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script id="canvas_nest" defer="defer" color="255,255,255" opacity="0.8" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
