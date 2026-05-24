@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>关于做游戏GameJam | Ziming's Blog</title><meta name="keywords" content="游戏开发,独立游戏,GameJam"><meta name="author" content="飞翔的子明"><meta name="copyright" content="飞翔的子明"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="原文发布于机核 GCORES：关于做游戏GameJam   本文是想记录一下我对这项活动的回顾、看法，主要是反思并无攻击之意，如有得罪还请见谅。。。  笔者开始学做游戏是在18-19年，到如今大大小小也参加过近十次gamejam， 顺便对之前的gamejam记录做了一下回顾： GGJ2019  组队 Homepage  解谜游戏 CGJ2019  组队 HeartGame 多人合作游戏 已经完全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于做游戏GameJam">
+<meta property="og:url" content="https://aiden-potter.github.io/2025/07/11/gamejam-making-games/index.html">
+<meta property="og:site_name" content="Ziming&#39;s Blog">
+<meta property="og:description" content="原文发布于机核 GCORES：关于做游戏GameJam   本文是想记录一下我对这项活动的回顾、看法，主要是反思并无攻击之意，如有得罪还请见谅。。。  笔者开始学做游戏是在18-19年，到如今大大小小也参加过近十次gamejam， 顺便对之前的gamejam记录做了一下回顾： GGJ2019  组队 Homepage  解谜游戏 CGJ2019  组队 HeartGame 多人合作游戏 已经完全">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aiden-potter.github.io/images/gamejam-making-games-cover.webp">
+<meta property="article:published_time" content="2025-07-10T22:59:41.000Z">
+<meta property="article:modified_time" content="2026-05-24T13:37:56.222Z">
+<meta property="article:author" content="飞翔的子明">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="独立游戏">
+<meta property="article:tag" content="GameJam">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aiden-potter.github.io/images/gamejam-making-games-cover.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://aiden-potter.github.io/2025/07/11/gamejam-making-games/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '关于做游戏GameJam',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-05-24 13:37:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/gamejam-making-games-cover.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ziming's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">关于做游戏GameJam</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-10T22:59:41.000Z" title="发表于 2025-07-10 22:59:41">2025-07-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-24T13:37:56.222Z" title="更新于 2026-05-24 13:37:56">2026-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="关于做游戏GameJam"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>原文发布于机核 GCORES：<a target="_blank" rel="noopener" href="https://www.gcores.com/articles/201549">关于做游戏GameJam</a></p>
+</blockquote>
+<blockquote>
+<p>本文是想记录一下我对这项活动的回顾、看法，主要是反思并无攻击之意，如有得罪还请见谅。。。</p>
+</blockquote>
+<p>笔者开始学做游戏是在18-19年，到如今大大小小也参加过近十次gamejam，</p>
+<p>顺便对之前的gamejam记录做了一下回顾：</p>
+<p>GGJ2019  组队 Homepage  解谜游戏</p>
+<p>CGJ2019  组队 HeartGame 多人合作游戏 已经完全忘记</p>
+<p>CGJ2020  组队 和师兄组队 用ue 东方同人游戏 3d 弹幕射击</p>
+<p>GGJ2021 组队 用ue Blind Samurai  3d 潜行砍杀</p>
+<p>GGJ2022 组队 2d俯视角 双人合作砍杀</p>
+<p>GGJ2023 组队 种植物语 2d种田</p>
+<p>CGJ2023 两人组队 3d解谜</p>
+<p>GGJ2024 组队 3d盖房子游戏</p>
+<p>RGJ2024 组队 社团Gamejam 小逃杀下棋</p>
+<p>Boom2024 组队 动物战棋 变工作边做关卡策划 三周</p>
+<p>Boom2024 组队2.5D平台动作 解谜 三周</p>
+<p>CGJ2025 solo 射击 解谜</p>
+<h2 id="聊聊经过"><a href="#聊聊经过" class="headerlink" title="聊聊经过"></a>聊聊经过</h2><p>最开始学游戏开发，做程序时上手较快，便一直学程序，19年参加的两次gamejam都是作为辅助程序参加，这时候参加gamejam的目的往往是认识人、做些项目练手，但作为辅助实际上真正用到我写代码的地方也不多，这些时候往往都有大哥兜底，GJ实际要写的代码并不多自然也就会摸鱼，在这段时间自我感觉水平提升并不大，但是当时成绩还挺好，广州站第三，但是大家都有自己要做的事，也就不形成把一个gj项目给做成实际上线项目的机会了，不过后面团队里广美的姐姐请我去帮忙做毕设，我去试了试，发现自己其实能力不够，就挺尴尬的。</p>
+<img src="/2025/07/11/gamejam-making-games/01-e066f55f3f401df5cd4439af795d450a-1692-1077.webp" class="">
+
+<p>CGJ2019印象里自己的水平暴露，自己感觉很菜还挺翻车的，还是和一个自己喜欢的制作人组队，感觉自己都可以钻到地洞里去了，所以这也是自我觉得这段时间做的不好感觉可以写出来的点，后面自己在做demo这块已经有改进了。</p>
+<p>印象里20年没有GGJ，因为疫情了。</p>
+<p>到20年CGJ时开始用ue，因为工作要用ue引擎，也是想着多熟悉熟悉ue的功能，来做gamejam，用蓝图做游戏，用过之后感觉对蓝图的喜爱并不大，不过ue预制了很多的功能，通过这样的活动来学会用引擎功能，做点小工具，也是极好的，不过后面我想多以做作品为目的参加GameJam，便不想把自己的功能和大型引擎的预制功能绑定，更多想自己随便做做，后续多以unity参加GameJam。</p>
+<p>21年GGJ同上，用ue做了个砍杀游戏，因为大学时候做过什么大学生创业项目 盲人手表，感觉想模拟盲人，当时也想过策划瘾，弄了个盲武士，想不起来了很多细节了。</p>
+<img src="/2025/07/11/gamejam-making-games/02-85c2c46934ae4eae80c12e9a146abba3-2089-1227.webp" class="">
+
+<figcaption>用ue做的48小时游戏</figcaption>
+
+<p>22年开始自称策划的参与Gamejam，好像这样每次参加GameJam都想过一把策划瘾，当时我们是几个同学，因为三个程序组队，当时敲定要做个多人肉鸽，结果就是做出来一坨，最后把自己的语音丢进去，说实话我现在都没脸见这个游戏，感觉想到就很想笑，程序太多到后来一个模块甚至会经过多人手，自己也没写多少。</p>
+<p>到23年GGJ，当时人已经在上海，想着之前组队还不错，决定跟别人组队，自己就以程序身份参加也可以，但是当时的组队并不很愉快，我也体会到了帮团队成员搞环境的痛苦，装引擎搞git，然后自己其实也并不能从中收获太多乐趣，就想着真的讨论机制了，自己应该也帮忙想想，记得当时讨论种花的化肥要怎么配比，我坚持想用百分比 因为这样可以做各种颜色的肥料（药水），最后像炼金模拟器那样，但是策划考虑理解难度之类的，不过我好像因为比较强硬，说着想要那样当药剂师的体验，最后还是做成了百分比，想来弄得策划两人组并不算特别开心，这属于经典越权，后续我也遇到差不多事情，发生这样的事，大家再联系的概率就很小了。</p>
+<img src="/2025/07/11/gamejam-making-games/03-7c0ce0088d06cfd4005ab3bd0cd226af-1910-1245.webp" class="">
+
+<figcaption>想起来岩田聪说，与人合作时，要想着能成为让对方说出“下次还想和这家伙合作”的人，自己在说话做事这些方面还是需要练习。</figcaption>
+
+<p>CGJ2023是我开始想要小团队搞创作的一年，此时我已经能自己cover程序，有一些设计想法，依旧是带着一个好友来做gj，当时很喜欢探索 解谜，自己也就照着viewfinder之类的，做了一个控制相片里的物体的功能，这次的体验很好，首先是我和同伴相互信任，也都放了一些我们两个都知道的彩蛋丢进游戏，那时候我感觉我还挺喜欢彩蛋的，就好像给游戏签名一样。</p>
+<img src="/2025/07/11/gamejam-making-games/04-213fca3f6b416502cfa2e8161d63deca-2331-1318.webp" class="">
+
+<p>GGJ2024，同样是有合作问题，两名学生加入，我也不太会给人分工作，并且我爹味比较重还是，最后成果不好，挺自嗨的，不多谈，当时想做究极手盖房子，因为沉迷塞尔达王泪，后续也没有再联系。</p>
+<p>2024年参加两次boom，一次是工作期间参加的，工作期间自己的精力非常有限，又是用ue，当时自己的精神状态也不是很好，本来说可以做关卡策划可以做程序，但是看到主力老哥主要用蓝图就有点干不下去了，考虑到精神状态就跟大伙说只做关卡策划，但是后面迭代关卡时地编老哥觉得关卡搭建太简单了，想加点料，便加了很多要素，导致我后面也不太知道应该如何调整白模的关卡，个人当时有一点感觉不是很舒适，加上当时用的插件做游戏，后续改动困难，看的我心力交瘁，难以燃气热情继续做下去，最后结果同样一般，也很少再联系。</p>
+<p>2024年boom第二次，先是经历炸车，因为意见不合互相攻击，后续找了其他合作伙伴，但是遇到一些合作问题，临到最后两天很急，也是做出了一些错误的决策，导致又有一些争吵。</p>
+<p>2024年RGJ，滑水度过，精神状态不好。</p>
+<p>2024年聚光灯Jam，未完成，精神状态不好。</p>
+<p>25年GGJ，感觉好像GJ主题有点难想，自己此时没有太多精力，没做。</p>
+<p>2025年CGJ，想着自己可以搞搞solo，为了取悦自己而做，游刃有余就好，做的了米斯达子弹拐弯，抄一下狙击精英的效果，感觉还不错。</p>
+<img src="/2025/07/11/gamejam-making-games/05-63c0ce4c8b0b532264c50ccdacbf9be7-1315-944.webp" class="">
+
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>可以看到自己基本上每次jam都带着目的来的，有时候是学习，有时候是创作，有时候是玩玩，有时候是蹭个作品，jam这种东西目前的线下赛，个人体感很难有非常舒服的组队，因为自己几次组野队，好像都很失败。</p>
+<p>纠其根本，目的不同的人之间很难很好的相处，创作的人难以接受自己的作品被其他的人蹭、学习的人难以负担较为复杂的设计、玩者心态和前面的较为认真的人也有些冲突、其他的一个队伍有多个想法、成员比较情绪化，遇到这些情况，往往炸车或者做不好，保持团队成员的目的一致我认为很重要。</p>
+<p>我的能力覆盖也不算很全，就比如做画面的能力比较一般，往往想找个人补缺，对作品有种想做好一点的想法，所以经常合作，但是合作又会遇到各种问题，合作还是得减少越权互相尊重呀，在我看来合作是比较适合成熟的开发者，互相认识、熟络的开发者。对于正在学习者的gamejam参与者，我觉得就算组队也应该少点人，自己独自把项目给完成了，才算是真正练习到位了，达到了目的，此时组队的意义个人感觉不大。</p>
+<p>感觉Jam的频率太高也不好，Jam对于程序 美术都是要爆肝的，做多了是消耗热情，假设做出来的反馈不好就是更加消耗热情，为此保护好自己热情很重要，不然就会需要很多时间恢复。jam多数是命题作文，在我看来这实际上是有点专业能力考察的意思，有那么一点像考试，练习练习，做多了其实并没有太多好处，但是我可以选择不做就还挺好。</p>
+<p>感觉Jam对自己还挺有帮助的，一方面有时候带着目的去练习做游戏、去合作，学到很多做人做事的经验，但给一些路上遇到的人体验可能并不很好，也慢慢找到自己对游戏主要关注什么。</p>
+<p>现在自己偶尔还是会参加Jam，有个朋友跟我聊天说，觉得这种限时的jam的价值不高之类的，我便觉得好像还挺有价值的，就如果自己enjoy的话，如果合作很顺利的话，可以真的把一个创意给弄出来还是挺让人兴奋的。毕竟gj上出一些好的独立游戏的demo不少，我喜欢的游戏《拣爱》就是出自CGJ，创作始终还是一件让人开心的事情。</p>
+<p>希望大家都做出自己满意的游戏。</p>
+<p>2025.7.11</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">飞翔的子明</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://aiden-potter.github.io/2025/07/11/gamejam-making-games/">https://aiden-potter.github.io/2025/07/11/gamejam-making-games/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Aiden-Potter.github.io" target="_blank">Ziming's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><a class="post-meta__tags" href="/tags/%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F/">独立游戏</a><a class="post-meta__tags" href="/tags/GameJam/">GameJam</a></div><div class="post_share"><div class="social-share" data-image="/images/gamejam-making-games-cover.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/07/30/online-games-memories/"><img class="prev-cover" src="/images/online-games-memories-cover.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">关于网络游戏</div></div></a></div><div class="next-post pull-right"><a href="/2025/07/04/reading-notes-iwata-san/"><img class="next-cover" src="/images/reading-notes-iwata-san-cover.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">岩田聪的读书笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/31/flying-game-dev-july/" title="飞行游戏开发记录——七月"><img class="cover" src="/images/bird.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-30</div><div class="title">飞行游戏开发记录——七月</div></div></a></div><div><a href="/2024/09/04/lost-in-mountains-dev-review/" title="《迷失山间》开发回顾"><img class="cover" src="/images/lost-in-mountains-dev-review-cover.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-04</div><div class="title">《迷失山间》开发回顾</div></div></a></div><div><a href="/2026/01/21/gdc2017-uncharted-4-off-roading/" title="GDC2017 神海4载具：The Science of Off-Roading"><img class="cover" src="/images/gdc2017-uncharted-4-off-roading-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-20</div><div class="title">GDC2017 神海4载具：The Science of Off-Roading</div></div></a></div><div><a href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass"><img class="cover" src="/images/gdc2018-vehicle-feel-masterclass-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-17</div><div class="title">GDC2018 载具手感：Vehicle Feel Masterclass</div></div></a></div><div><a href="/2022/05/29/gdc2019-noita-tech-and-design/" title="GDC2019 Noita tech and design"><img class="cover" src="/images/gdc2019-noita-tech-and-design-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-29</div><div class="title">GDC2019 Noita tech and design</div></div></a></div><div><a href="/2025/07/04/reading-notes-iwata-san/" title="岩田聪的读书笔记"><img class="cover" src="/images/reading-notes-iwata-san-cover.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-03</div><div class="title">岩田聪的读书笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">飞翔的子明</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/146290005" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://github.com/Aiden-Potter" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/fei-xiang-de-zi-ming" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.cnblogs.com/FlyingZiming" target="_blank" title="博客园"><i class="fas fa-rss"></i></a><a class="social-icon" href="https://www.gcores.com/users/586569/talks" target="_blank" title="Gcores"><i class="fas fa-gamepad"></i></a><a class="social-icon" href="mailto:ziming0327@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Keep curious</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%8A%E8%81%8A%E7%BB%8F%E8%BF%87"><span class="toc-number">1.</span> <span class="toc-text">聊聊经过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%84%9F%E6%83%B3"><span class="toc-number">2.</span> <span class="toc-text">感想</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/21/gdc2017-uncharted-4-off-roading/" title="GDC2017 神海4载具：The Science of Off-Roading"><img src="/images/gdc2017-uncharted-4-off-roading-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GDC2017 神海4载具：The Science of Off-Roading"/></a><div class="content"><a class="title" href="/2026/01/21/gdc2017-uncharted-4-off-roading/" title="GDC2017 神海4载具：The Science of Off-Roading">GDC2017 神海4载具：The Science of Off-Roading</a><time datetime="2026-01-20T16:15:14.000Z" title="发表于 2026-01-20 16:15:14">2026-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass"><img src="/images/gdc2018-vehicle-feel-masterclass-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GDC2018 载具手感：Vehicle Feel Masterclass"/></a><div class="content"><a class="title" href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass">GDC2018 载具手感：Vehicle Feel Masterclass</a><time datetime="2026-01-17T20:02:40.000Z" title="发表于 2026-01-17 20:02:40">2026-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/19/doubt-and-belief/" title="关于怀疑和相信"><img src="/images/doubt-and-belief-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于怀疑和相信"/></a><div class="content"><a class="title" href="/2025/12/19/doubt-and-belief/" title="关于怀疑和相信">关于怀疑和相信</a><time datetime="2025-12-19T00:35:00.000Z" title="发表于 2025-12-19 00:35:00">2025-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/30/online-games-memories/" title="关于网络游戏"><img src="/images/online-games-memories-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于网络游戏"/></a><div class="content"><a class="title" href="/2025/07/30/online-games-memories/" title="关于网络游戏">关于网络游戏</a><time datetime="2025-07-29T23:25:05.000Z" title="发表于 2025-07-29 23:25:05">2025-07-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/11/gamejam-making-games/" title="关于做游戏GameJam"><img src="/images/gamejam-making-games-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于做游戏GameJam"/></a><div class="content"><a class="title" href="/2025/07/11/gamejam-making-games/" title="关于做游戏GameJam">关于做游戏GameJam</a><time datetime="2025-07-10T22:59:41.000Z" title="发表于 2025-07-10 22:59:41">2025-07-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By 飞翔的子明</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script id="canvas_nest" defer="defer" color="255,255,255" opacity="0.8" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

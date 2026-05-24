@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GDC2017 神海4载具：The Science of Off-Roading | Ziming's Blog</title><meta name="keywords" content="游戏开发,GDC,载具,物理模拟,Uncharted"><meta name="author" content="飞翔的子明"><meta name="copyright" content="飞翔的子明"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文整理自本地笔记：The Science of Off-Roading: Uncharted 4’s 4x4  背景在马达加斯加开车探索 冒险 享受驾驶 营造一种真实感 希望玩家可以沉浸在其中最后是保证车辆能在马达加斯加山区的崎岖泥泞地形上行驶   模拟风格在真实和风格化之间做选择  最后决定做一个4x4 四驱车 实际上就是四个轮子都是动力轮一开始模型简单是很好的 后面可以加入一些hack来让">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GDC2017 神海4载具：The Science of Off-Roading">
+<meta property="og:url" content="https://aiden-potter.github.io/2026/01/21/gdc2017-uncharted-4-off-roading/index.html">
+<meta property="og:site_name" content="Ziming&#39;s Blog">
+<meta property="og:description" content="本文整理自本地笔记：The Science of Off-Roading: Uncharted 4’s 4x4  背景在马达加斯加开车探索 冒险 享受驾驶 营造一种真实感 希望玩家可以沉浸在其中最后是保证车辆能在马达加斯加山区的崎岖泥泞地形上行驶   模拟风格在真实和风格化之间做选择  最后决定做一个4x4 四驱车 实际上就是四个轮子都是动力轮一开始模型简单是很好的 后面可以加入一些hack来让">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aiden-potter.github.io/images/gdc2017-uncharted-4-off-roading-cover.png">
+<meta property="article:published_time" content="2026-01-20T16:15:14.000Z">
+<meta property="article:modified_time" content="2026-05-24T14:14:20.651Z">
+<meta property="article:author" content="飞翔的子明">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="GDC">
+<meta property="article:tag" content="载具">
+<meta property="article:tag" content="物理模拟">
+<meta property="article:tag" content="Uncharted">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aiden-potter.github.io/images/gdc2017-uncharted-4-off-roading-cover.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://aiden-potter.github.io/2026/01/21/gdc2017-uncharted-4-off-roading/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GDC2017 神海4载具：The Science of Off-Roading',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-05-24 14:14:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/gdc2017-uncharted-4-off-roading-cover.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ziming's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GDC2017 神海4载具：The Science of Off-Roading</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-20T16:15:14.000Z" title="发表于 2026-01-20 16:15:14">2026-01-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-24T14:14:20.651Z" title="更新于 2026-05-24 14:14:20">2026-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GDC2017 神海4载具：The Science of Off-Roading"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本文整理自本地笔记：The Science of Off-Roading: Uncharted 4’s 4x4</p>
+</blockquote>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在马达加斯加开车探索 冒险 享受驾驶 营造一种真实感 希望玩家可以沉浸在其中<br>最后是保证车辆能在马达加斯加山区的崎岖泥泞地形上行驶</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119010233990.png" class="">
+
+<h1 id="模拟风格"><a href="#模拟风格" class="headerlink" title="模拟风格"></a>模拟风格</h1><p>在真实和风格化之间做选择</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119010418326.png" class="">
+<p>最后决定做一个4x4 四驱车 实际上就是四个轮子都是动力轮<br>一开始模型简单是很好的 后面可以加入一些hack来让看起来真实又有操控感（讲太快了 没听明白</p>
+<h1 id="simulation"><a href="#simulation" class="headerlink" title="simulation"></a>simulation</h1><h2 id="collision-and-response"><a href="#collision-and-response" class="headerlink" title="collision and response"></a>collision and response</h2><img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119010655098.png" class=""><img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119010711752.png" class="">
+
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119010733243.png" class=""><img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119010741238.png" class="">
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119010750050.png" class="">
+<p>车子是刚体<br>轮子是刚体<br>中间放着约束系统连接着，用的havok引擎，但是自己给一些约束的输入<br>关闭了轮子的刚体碰撞 转而使用 使用点约束系统 确定轮胎的贴住的位置<br>实际上应该是车轮碰撞器 自己传递一些contact point<br>根据车身 轮子的质量生成法向力<br>这个法向力会用来生成摩擦力</p>
+<p>使用射线来做车轮 圆形是contact point<br>射线投射的起点是 hard point</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119011225441.png" class="">
+<p>作者说他很喜欢让东西跑起来然后再在上面加东西 俺也一样</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119011642608.png" class="">
+<p>加了个赛道测试</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119011706621.png" class="">
+<p>有一些不可预测的碰撞 因为只打了一根射线<br>其次 碰撞响应速度有点慢</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119011820878.png" class="">
+<p>车轮有穿透</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119011848500.png" class="">
+<p>做了个圆柱形投射  同时调整了 ray start的位置 上移动一部分<br>找最近点 排序 过滤</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119012150044.png" class="">
+<p>很大的进步 少了很多穿透</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119012122618.png" class="">
+<p>只取最近的遇到很多jittering<br>于是他们取了更多的碰撞点 限制在取三个为了稳定</p>
+<p>解决下一个问题 撞到一个这样的崎岖地面时碰撞点的法线会让车的动量失去很多 甚至完全失去</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119012526078.png" class="">
+<p>所以他们传递了一些只有垂直于悬挂方向的法线到havok求解器里去</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119012742703.png" class="">
+<p>像在黄油上滑动一样顺滑 很好的保持了动量<br>这并不现实但是它保留了很有趣的驾驶体验<br>但是它也带来了问题 车轮无法完美地响应碰撞 车轮有时候会穿插进颠簸的崎岖地面<br>他们重新实现了车轮碰撞响应</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119013116075.png" class="">
+<p>在垂直方向投影 找最大值</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119013159616.png" class="">
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119013217220.png" class="">
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119013236743.png" class="">
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119013306826.png" class="">
+<p>如果将轮子要沿着悬挂方向移动过远 超过hardpoint<br>此时需要避免轮子和底盘相交 他永远不会超过hardoint<br>超过了要给底盘往上额外的一个力</p>
+<ul>
+<li>让车子脱离这种相交</li>
+<li>同时飞驰落地后会有种冲击感</li>
+</ul>
+<p>处理探测到的表面角度 让垂直墙面不能走。。。</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119013839240.png" class="">
+<p>有时候要沿着墙壁行动 </p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119013909425.png" class="">
+
+<p>避免翻车</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119014013498.png" class="">
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119013959445.png" class="">
+<p>基于旋转角度 用力来限制旋转角度<br>注意到他是沿着一个角度保持着落下去的 这里可以用PID控制器</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119014058878.png" class="">
+<p>同时在空中打方向盘也有用 不会让玩家觉得自己失去了control</p>
+<p>这个系统保证车轮贴住地面</p>
+<h2 id="motor"><a href="#motor" class="headerlink" title="motor"></a>motor</h2><img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119014230352.png" class="">
+<p>motor and wheel</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119014319022.png" class="">
+<p>功率 速度 功率随着转速的增加而增加 知道达到峰值功率<br>然后效率开始下降</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119014420145.png" class="">
+<p>真实油门系统做了一套简化 但是这个反馈系统很重要 所有人都在强调<br>差速器 是一个经过了调研后觉得加入很有性价比的组件 </p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119014941189.png" class="">
+<p>让两个轮子可以不同速度旋转</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119015026306.png" class="">
+<p>差速可以产生力矩 帮助转向<br>同时外侧轮胎会得到更大的抓地力 改善操控</p>
+<p>力矩分配？</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119015403731.png" class="">
+
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119015504419.png" class="">模拟了动力 最后输出是轮子转速 扭矩
+
+<h2 id="Tire-Friction轮胎摩擦"><a href="#Tire-Friction轮胎摩擦" class="headerlink" title="Tire Friction轮胎摩擦"></a>Tire Friction轮胎摩擦</h2><img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119015653372.png" class="">
+<p>摩擦力决定在打滑之前可以施加多大的前进力<br>表面有不同的材质 有不同的摩擦系数</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119015829669.png" class="">
+<p>playtest ing</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119015920045.png" class="">
+<p>法向力 决定最大摩擦力</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119015945290.png" class="">
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119020037069.png" class="">
+<p>forward force = 轮子的力矩 / 轮子半径<br>lateral force</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119020055414.png" class="">
+<p>两个速度一除得到滑移系数</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119020232264.png" class="">
+<p>最后限制最大力</p>
+<p>漂移 动力滑行 easy to use</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119020858744.png" class="">
+<p>按下手刹时降低后轮的摩擦力</p>
+<h1 id="AI-自动驾驶"><a href="#AI-自动驾驶" class="headerlink" title="AI 自动驾驶"></a>AI 自动驾驶</h1><img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119021025080.png" class="">
+<p>队友开车来找他</p>
+<p>导航网格 静态的网格</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119021105664.png" class="">
+<p>如何让一辆四轮驱动的车在导航网格上行动<br>导航网格时基于capsule构建的<br>如何才能对准导航点 导航点在你后面怎么办<br>行驶速度该多快<br>前方有动态障碍怎么办 不影响navmesh的</p>
+<p>从转弯半径这一概念开始</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119021439206.png" class="">
+
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119021538555.png" class="">
+
+<p>WTF？这么学术 计算最小转弯半径<br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ackermann_steering_geometry">Ackermann steering geometry</a></p>
+<p>判断导航点时在圆内还是圆外</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119021835739.png" class="">
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119022006651.png" class="">
+<p>还是分状态分模式的方法 但是具体有哪些状态呢</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119022046521.png" class="">
+<p>面对动态物体怎么办</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119022104602.png" class="">
+<p>多做几个raycast来做转弯 某种避障系统</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119022118888.png" class="">
+<p>感觉时离得越近转弯越大 实际上好像什么都没讲</p>
+<p>样条曲线跟随</p>
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119022229919.png" class="">
+
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119022325527.png" class="">
+<img src="/2026/01/21/gdc2017-uncharted-4-off-roading/image-20260119023101237.png" class="">
+
+<p>以设计为导向开发</p>
+<h1 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h1><p>提了一个下落时候如何处理过大的反弹？<br>我做过一个加垂直方向drag的方案</p>
+<p>车辆底盘触底怎么办？<br>他们觉得不修复</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">飞翔的子明</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://aiden-potter.github.io/2026/01/21/gdc2017-uncharted-4-off-roading/">https://aiden-potter.github.io/2026/01/21/gdc2017-uncharted-4-off-roading/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Aiden-Potter.github.io" target="_blank">Ziming's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><a class="post-meta__tags" href="/tags/GDC/">GDC</a><a class="post-meta__tags" href="/tags/%E8%BD%BD%E5%85%B7/">载具</a><a class="post-meta__tags" href="/tags/%E7%89%A9%E7%90%86%E6%A8%A1%E6%8B%9F/">物理模拟</a><a class="post-meta__tags" href="/tags/Uncharted/">Uncharted</a></div><div class="post_share"><div class="social-share" data-image="/images/gdc2017-uncharted-4-off-roading-cover.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/01/18/gdc2018-vehicle-feel-masterclass/"><img class="next-cover" src="/images/gdc2018-vehicle-feel-masterclass-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GDC2018 载具手感：Vehicle Feel Masterclass</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass"><img class="cover" src="/images/gdc2018-vehicle-feel-masterclass-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-17</div><div class="title">GDC2018 载具手感：Vehicle Feel Masterclass</div></div></a></div><div><a href="/2021/12/15/star-wars-jedi-fallen-order-physical-animation/" title="GDC 技术美术：《星球大战绝地陨落的武士团》的物理动画"><img class="cover" src="/images/star-wars-jedi-fallen-order-physical-animation-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-15</div><div class="title">GDC 技术美术：《星球大战绝地陨落的武士团》的物理动画</div></div></a></div><div><a href="/2022/05/29/gdc2019-noita-tech-and-design/" title="GDC2019 Noita tech and design"><img class="cover" src="/images/gdc2019-noita-tech-and-design-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-29</div><div class="title">GDC2019 Noita tech and design</div></div></a></div><div><a href="/2023/07/31/flying-game-dev-july/" title="飞行游戏开发记录——七月"><img class="cover" src="/images/bird.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-30</div><div class="title">飞行游戏开发记录——七月</div></div></a></div><div><a href="/2025/07/11/gamejam-making-games/" title="关于做游戏GameJam"><img class="cover" src="/images/gamejam-making-games-cover.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-10</div><div class="title">关于做游戏GameJam</div></div></a></div><div><a href="/2024/09/04/lost-in-mountains-dev-review/" title="《迷失山间》开发回顾"><img class="cover" src="/images/lost-in-mountains-dev-review-cover.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-04</div><div class="title">《迷失山间》开发回顾</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">飞翔的子明</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/146290005" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://github.com/Aiden-Potter" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/fei-xiang-de-zi-ming" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.cnblogs.com/FlyingZiming" target="_blank" title="博客园"><i class="fas fa-rss"></i></a><a class="social-icon" href="https://www.gcores.com/users/586569/talks" target="_blank" title="Gcores"><i class="fas fa-gamepad"></i></a><a class="social-icon" href="mailto:ziming0327@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Keep curious</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E9%A3%8E%E6%A0%BC"><span class="toc-number">2.</span> <span class="toc-text">模拟风格</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#simulation"><span class="toc-number">3.</span> <span class="toc-text">simulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#collision-and-response"><span class="toc-number">3.1.</span> <span class="toc-text">collision and response</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#motor"><span class="toc-number">3.2.</span> <span class="toc-text">motor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tire-Friction%E8%BD%AE%E8%83%8E%E6%91%A9%E6%93%A6"><span class="toc-number">3.3.</span> <span class="toc-text">Tire Friction轮胎摩擦</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AI-%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6"><span class="toc-number">4.</span> <span class="toc-text">AI 自动驾驶</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E9%97%AE"><span class="toc-number">5.</span> <span class="toc-text">提问</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/21/gdc2017-uncharted-4-off-roading/" title="GDC2017 神海4载具：The Science of Off-Roading"><img src="/images/gdc2017-uncharted-4-off-roading-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GDC2017 神海4载具：The Science of Off-Roading"/></a><div class="content"><a class="title" href="/2026/01/21/gdc2017-uncharted-4-off-roading/" title="GDC2017 神海4载具：The Science of Off-Roading">GDC2017 神海4载具：The Science of Off-Roading</a><time datetime="2026-01-20T16:15:14.000Z" title="发表于 2026-01-20 16:15:14">2026-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass"><img src="/images/gdc2018-vehicle-feel-masterclass-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GDC2018 载具手感：Vehicle Feel Masterclass"/></a><div class="content"><a class="title" href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass">GDC2018 载具手感：Vehicle Feel Masterclass</a><time datetime="2026-01-17T20:02:40.000Z" title="发表于 2026-01-17 20:02:40">2026-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/19/doubt-and-belief/" title="关于怀疑和相信"><img src="/images/doubt-and-belief-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于怀疑和相信"/></a><div class="content"><a class="title" href="/2025/12/19/doubt-and-belief/" title="关于怀疑和相信">关于怀疑和相信</a><time datetime="2025-12-19T00:35:00.000Z" title="发表于 2025-12-19 00:35:00">2025-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/30/online-games-memories/" title="关于网络游戏"><img src="/images/online-games-memories-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于网络游戏"/></a><div class="content"><a class="title" href="/2025/07/30/online-games-memories/" title="关于网络游戏">关于网络游戏</a><time datetime="2025-07-29T23:25:05.000Z" title="发表于 2025-07-29 23:25:05">2025-07-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/11/gamejam-making-games/" title="关于做游戏GameJam"><img src="/images/gamejam-making-games-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于做游戏GameJam"/></a><div class="content"><a class="title" href="/2025/07/11/gamejam-making-games/" title="关于做游戏GameJam">关于做游戏GameJam</a><time datetime="2025-07-10T22:59:41.000Z" title="发表于 2025-07-10 22:59:41">2025-07-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By 飞翔的子明</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script id="canvas_nest" defer="defer" color="255,255,255" opacity="0.8" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

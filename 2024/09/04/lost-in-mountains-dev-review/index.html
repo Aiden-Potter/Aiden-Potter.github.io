@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>《迷失山间》开发回顾 | Ziming's Blog</title><meta name="keywords" content="游戏开发,独立游戏,开发回顾"><meta name="author" content="飞翔的子明"><meta name="copyright" content="飞翔的子明"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="原文发布于机核 GCORES：《迷失山间》开发回顾  写在前面 大家好，这里是《迷失山间》的制作人子明，虽然作品有着诸多不足，但是本着失败的项目也许能学到许多的心态，我尝试去总结游戏设计遇到的问题，也许将来有一天，会帮助到自己，或者其他人。   迷失山间是一款想去表达情感的知识解谜游戏，本文会涉及《迷失山间》的知识剧透，感兴趣可以先体验一下游戏，谢谢支持！  《迷失山间》游戏链接 核心这个项目的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《迷失山间》开发回顾">
+<meta property="og:url" content="https://aiden-potter.github.io/2024/09/04/lost-in-mountains-dev-review/index.html">
+<meta property="og:site_name" content="Ziming&#39;s Blog">
+<meta property="og:description" content="原文发布于机核 GCORES：《迷失山间》开发回顾  写在前面 大家好，这里是《迷失山间》的制作人子明，虽然作品有着诸多不足，但是本着失败的项目也许能学到许多的心态，我尝试去总结游戏设计遇到的问题，也许将来有一天，会帮助到自己，或者其他人。   迷失山间是一款想去表达情感的知识解谜游戏，本文会涉及《迷失山间》的知识剧透，感兴趣可以先体验一下游戏，谢谢支持！  《迷失山间》游戏链接 核心这个项目的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aiden-potter.github.io/images/lost-in-mountains-dev-review-cover.webp">
+<meta property="article:published_time" content="2024-09-04T13:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-24T13:37:05.109Z">
+<meta property="article:author" content="飞翔的子明">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="独立游戏">
+<meta property="article:tag" content="开发回顾">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aiden-potter.github.io/images/lost-in-mountains-dev-review-cover.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://aiden-potter.github.io/2024/09/04/lost-in-mountains-dev-review/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '《迷失山间》开发回顾',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-05-24 13:37:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/lost-in-mountains-dev-review-cover.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ziming's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《迷失山间》开发回顾</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-04T13:00:00.000Z" title="发表于 2024-09-04 13:00:00">2024-09-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-24T13:37:05.109Z" title="更新于 2026-05-24 13:37:05">2026-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《迷失山间》开发回顾"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>原文发布于机核 GCORES：<a target="_blank" rel="noopener" href="https://www.gcores.com/articles/187663">《迷失山间》开发回顾</a></p>
+</blockquote>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>大家好，这里是《迷失山间》的制作人子明，虽然作品有着诸多不足，但是本着失败的项目也许能学到许多的心态，我尝试去总结游戏设计遇到的问题，也许将来有一天，会帮助到自己，或者其他人。</p>
+</blockquote>
+<blockquote>
+<p>迷失山间是一款想去表达情感的知识解谜游戏，本文会涉及《迷失山间》的知识剧透，感兴趣可以先体验一下游戏，谢谢支持！</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.gcores.com/games/133441">《迷失山间》游戏链接</a></p>
+<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><p>这个项目的起源是感觉本次参加boom很有一种回到了起点的感觉，对于我个人，又重新开始，像个学徒一样学习游戏开发，总有种新的感悟，于是想要把这个感觉传达出来。</p>
+<p>一句话体验： <strong>想要一种回到起点而产生新的感觉的体验</strong></p>
+<p>change your mind,not your ability.（metroidbrainia）以知识为主的谜题设计。</p>
+<p>change your road,not your startpoint.（矫情点叫初心）</p>
+<p>一句话品类描述：一个讨论道路的，以起点为中心的，利用关卡传达感觉的平台动作解谜作品</p>
+<p>核心机制：回到起点、平台、动作、解谜、（脑银）迷宫、知识谜题</p>
+<p>希望通过关卡设计传达感觉，而尽量少用文字，并且让玩家在起点最后悟出新的感觉——好想活、好想感谢的情感。</p>
+<p>情感曲线设计上，希望玩家先经历相对低落的情感，再转向相对正面的情感，每个小关卡内都使用如此结构，最后在起点想到经历的一切而产生新的感觉。</p>
+<h2 id="抵达核心的路径"><a href="#抵达核心的路径" class="headerlink" title="抵达核心的路径"></a>抵达核心的路径</h2><p>那么关卡如何传达感觉？</p>
+<ul>
+<li><p>运动路线（直来直去、七拐八拐、空阔、逼仄）</p>
+</li>
+<li><p>意象 环境（偏视觉传达）</p>
+</li>
+<li><p>知识（顿悟时刻）</p>
+</li>
+<li><p>交互（什么时候能做 什么时候不能做）</p>
+</li>
+</ul>
+<p>其中需要指出，知识是指能力的衍生用法，常规银河城会大量使用能力锁，这次自己因为受到leap year、outer wilds、animal well的影响，想尝试使用知识锁为主来建构整个项目，一开始就给予玩家所有能力，并且让玩家在尝试中学会能力的各种用法，学会的那个时刻进行刻意设计，期望在那个时刻玩家获得一些情感体验。</p>
+<p>最开始我们按照leap year的规格制作了一些地图大小标准，然后我们发现可能以情感为核心的话，那些地图的设计，可能都得服务于情感，而不是想到了关卡设计就开始做，那样最后应该难以达到传递情感的效果。</p>
+<p>于是我们设计了几个主要想传达的情感，以情感为中心，设计小机制并且设计了几个场景，也许有可能激起玩家情感的机制。</p>
+<ul>
+<li><p>痛苦关卡，平台跳跃的攀登，包含金币，越往上走，越有可能获得金币，但是获得金币会让跳跃力衰减，更难前进</p>
+</li>
+<li><p>迷茫关卡，走夜路，你身上有一个灯，有大概方向 然后需要走出这片看不清方向的地区</p>
+</li>
+<li><p>懦弱关卡，需要对抗黑影敌人，在这里你会领悟自己已有的攻击能力，并且解开大部分的门。</p>
+</li>
+<li><p>焦虑关卡，一个永远上不去的瀑布，一个十分钟才会打开的门，解决的方法只有等待</p>
+</li>
+<li><p>拯救关卡，最后的关卡，两条反向动线，拯救两位先前出现的npc，蜘蛛人+灰心哥。</p>
+</li>
+</ul>
+<p>最后，我们设计了各种门，以一个类银的模式，把这些场景都缝合起来，做成一个迷宫的样子。</p>
+<h2 id="游戏的知识谜题详解"><a href="#游戏的知识谜题详解" class="headerlink" title="游戏的知识谜题详解"></a>游戏的知识谜题详解</h2><h3 id="下落喊-蜘蛛人"><a href="#下落喊-蜘蛛人" class="headerlink" title="下落喊 蜘蛛人"></a>下落喊 蜘蛛人</h3><img src="/2024/09/04/lost-in-mountains-dev-review/01-7fa583856517dcb26c80fa77fb1be521-1316-1234.webp" class="">
+
+<p>开发者预测：玩家一路上跳会发现来到这个地方应该没有办法继续前进了，在这里前面用喊进行过交互，木牌提示可以尝试喊，往前跳只会下坠，那玩家也许可以悟出下落喊，并且下落喊的音效更大，特效范围更大。</p>
+<p>玩家如果下落喊，就会刷出一个npc 蜘蛛人发射蛛丝帮助你度过难关。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/02-a9b4c09de3f21b6a9181efdaaaef553d-1053-755.webp" class="">
+
+<img src="/2024/09/04/lost-in-mountains-dev-review/03-327730de30f90ec715504e91a22064b4-1136-866.webp" class="">
+
+<p>另外就是玩家根本意识不到蜘蛛人存在，因为我一开始让他隐身的，现身的时候会有一段小的演出。。（因为想复刻少年漫里的英雄形象）</p>
+<h3 id="蜘蛛人-死亡"><a href="#蜘蛛人-死亡" class="headerlink" title="蜘蛛人 死亡"></a>蜘蛛人 死亡</h3><p>但是这个蜘蛛人npc，60秒后就会死掉，死掉后尸体会落下底下压住开关，打开另一扇门，在最新的版本里玩家捡到了金币还会楠楠自语——“她也许是吃金币太多而摔死的”。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/04-6a1614b9a5c1ca43277ea6b66168e256-851-790.webp" class="">
+
+<p>期望玩家先与蜘蛛人发生相遇，被蜘蛛人帮助，然后看到蜘蛛人摔落而死，产生一种无奈感，但是后面发现自己可以回溯时间，最后在有限时间里成功拯救蜘蛛人。</p>
+<p>实际的情况：没有一个玩家一开始就触发了蜘蛛人，大家和灰心哥聊了很多，来到这里时候已经过了60秒，所以只能看到一具尸体，最初版本玩家根本意识不到他已经死了，只会觉得怪物很多，看到之后感觉不知道如何交互而困惑，这两天迭代才加上了主角说话的功能，多增加一些提示。</p>
+<p>为什么是60秒，似乎是这里有一个三向门，需要考虑玩家如果走一个从一开始的攀登关到下坠第二关的最短时间，希望玩家进入第二关后不会从第二关跳关进入第三关，用三向门封住了第三关的入口，而要用什么触发三向门呢，这里决定是使用蜘蛛人的尸体，因此限制了蜘蛛人的死亡时间。</p>
+<p>三向门的使用目的有两个，一是保序，不希望玩家跳关，二是希望玩家多看到一个时间有关的表现。</p>
+<p>但是回过头来看感觉因此而影响玩家和蜘蛛人的互动时间，感觉损失更大，将多个信息耦合了起来，理解难度更大，并且设计难度也更大。</p>
+<h3 id="金币-红点"><a href="#金币-红点" class="headerlink" title="金币 红点"></a>金币 红点</h3><p>金币吃多了角色身上会亮起红点，表示吃太多金币而感觉负担很重，游戏里除了回档没有别的消耗金币的手段，因此若是出现红点，则大概率需要回大档，拿到最大的红色金币后，角色会失去所有的跳跃、冲刺能力，并且走的非常慢。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/05-6b522873db45cf1ae0d37d6cea9294d6-1044-756.webp" class="">
+
+<p>这个机制其实有一点自嗨，因为想要传达出玩家越往上攀登，负担越重，越难攀登这一体验，于是做了一个如此反逻辑的设计，通常rpg游戏也有负重系统（但金币一般没负重，博德之门除外），超重后无法冲刺等等，但是平台游戏的收集物基本上都是奖励，把他做成惩罚是一种反逻辑，有些玩家和我抱怨说无缘被打了一拳一样，确实是这样，并没有代入玩家的视角来想这些问题。</p>
+<p>另外就是这个金币收集物没有出口，这就变成了一个更重的乘法，需要回大档这个事在早期版本也没有跟玩家有所交代，玩家到了后面才会意识到金币是一个debuff，这是我们设计时候的目标，这里是假想一个入行的新手，会发现路上只有很少的金币，他们不在必经之路上，需要多走几步才会吃到，后面则是将金币大多放在必经之路上，让玩家在丧失移动能力的道路上越陷越深。</p>
+<p>并且平台跳跃的关卡设计，如果需要考虑角色能力 而进行依赖设计，能力在变化对于关卡的兼容性也做出了要求，设计难度就更高。</p>
+<h3 id="时空门-回档机制"><a href="#时空门-回档机制" class="headerlink" title="时空门 回档机制"></a>时空门 回档机制</h3><img src="/2024/09/04/lost-in-mountains-dev-review/06-3ceef0431432b860682d60e048ee410d-1043-801.webp" class="">
+
+<p>角色来到这个位置跳下去，会从顶部落下来，并且会发生时间回溯，一切都会回到玩家没有改变过的样子，死去的npc也会复活。</p>
+<p>有人反馈这个机制还挺有意思，这也是我们尝试去区别outer wilds的点，outer wilds是限时探索，迷失山间想做的是非限时探索，尝试也做一些时间谜题但是需要自己手动触发回归。</p>
+<p>临时想到，目前蜘蛛人的设定上是很快就死了，和长时间的探索也形成了冲突，不过我们后面也有专门做一些短时间探索对应的移动机制。</p>
+<p>是的没错，这里就是命运石之门。</p>
+<h3 id="左右循环地图"><a href="#左右循环地图" class="headerlink" title="左右循环地图"></a>左右循环地图</h3><p>这个是从动物井学到的，包括时空门从顶部落下也是借鉴了动物井，感觉这样可以制作一个密闭空间，形成一个无限空间的迷宫，原企划里这里是一座山的两侧，底下是矿洞和深渊，最下面时空之门，没有解开山之谜团，便不允许你离开这个区域。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/07-00d1a0f7f5e8d5b6572e55a165f7b4c6-1546-1085.webp" class="">
+
+<p>红框区域有两个传送门，从一个传送门进去会从另一个传送门出来，这样你往一个方向走就不会离开地图了（目前还有些bug，有时候触发不了传送。。）。</p>
+<p>后面也有利用传送门解谜的机制。</p>
+<h3 id="横向木板-矿洞"><a href="#横向木板-矿洞" class="headerlink" title="横向木板 矿洞"></a>横向木板 矿洞</h3><p>第一次击碎横向木板应该是在攀登关卡的末尾，吃完红色金币，然后发现下坠时候会击穿木板，从而进入矿洞。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/08-dd119d74d953885d78a391567dbb5dbb-1803-1451.webp" class="">
+
+<p>然而实际上这个地方玩家很有可能试出来下砸，从而在没有打第一关的情况下进入了第二关，错失蜘蛛人这个npc，下砸这个操作在很多类银里都很常见，于是前面铺垫的npc交互就全失效了。</p>
+<p>这里主要是没有代入一个卡关的玩家视角去考虑关卡是否容易破解。</p>
+<p>然后就是假设玩家只能从第一关的末尾走到第二关，那么便将第一关的中段到终点这段路和第二关耦合起来了，并且有移动能力损失这个第二关的设计会更加的困难。</p>
+<p>而又要玩家一开始不会去尝试这块地方，不希望玩家破序，希望是一个在第一关末尾学到的知识，在这里可以容易的应用这个知识。</p>
+<p>后面想到可能得将这里包装起来，使用隐藏墙壁、更难破解的知识锁，来为攀登作为第一关作保序。</p>
+<p>这里需要指出，感觉但凡涉及两关内容耦合，势必会出现设计更难做的问题，后面第二关的出口是第三关的入口，第三关的出口是第四关的入口，都出现了类似的问题，改动第一关的移动能力，牵一发而动全身。</p>
+<p>要解决耦合问题，想到一个解决方案就是让关卡出入口之间不继续相连，而是使用关底知识和知识对应的门来进行相连。</p>
+<p>虽然耦合关卡的设计难度大，但是适合连续流程的体验，如果想玩家一路连续过关，也可以酌情使用。</p>
+<h3 id="踢-塌方"><a href="#踢-塌方" class="headerlink" title="踢 塌方"></a>踢 塌方</h3><img src="/2024/09/04/lost-in-mountains-dev-review/09-57b5a4e1660a910249c1c82e5476698e-1302-629.webp" class="">
+
+<p>玩家在一开始会遇到这种石块，可以用踢去交互，他们是物理的，会滚起来，像noita的石头</p>
+<p>塌方块是踢可以直接销毁的石块，因为工期就做成直接的门了，其实做成三个石头堆叠在一起物理的 然后有个物理的塌方堆在一起可能效果会更好。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/10-7c028b34ce2a20816ba74c5cd1e335a6-822-870.webp" class="">
+
+<p>如果反馈好的话我可能会做做。。</p>
+<h3 id="喊-声控灯"><a href="#喊-声控灯" class="headerlink" title="喊 声控灯"></a>喊 声控灯</h3><p>这里做了一个走夜路的关卡，希望玩家在里面摸索出方向。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/11-17004896ddcb4a986d4683ded1f44e8e-1637-891.webp" class="">
+
+<figcaption>黑，真的黑</figcaption>
+
+<img src="/2024/09/04/lost-in-mountains-dev-review/12-11fa45b6d00bef3df601984950769906-1778-1226.webp" class="">
+
+<figcaption>喊一声居然有灯</figcaption>
+
+<p>喊在这里可以呼出声控灯，可以照亮一些迷宫中的兴趣点。</p>
+<p>迷宫的设计过于狭窄了，感觉非常多的顶头，有人跟我说这里让人很烦躁，我自己也这么觉得，可能最小的通道高度得做成 玩家身高+跳跃高度才比较合理，或者就是把顶头当做一个解谜机制类似leap year那样做。</p>
+<h3 id="深渊-冲刺踢"><a href="#深渊-冲刺踢" class="headerlink" title="深渊 冲刺踢"></a>深渊 冲刺踢</h3><img src="/2024/09/04/lost-in-mountains-dev-review/13-9020d45d6ccc1202892cd7403e75ec43-1446-694.webp" class="">
+
+<p>来到这里 大黑影会来追你，这里原本是想做成一个眼魔，眼睛在正上方。</p>
+<p>下面一层是小黑影，同眼魔 但是眼睛在正前方。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/14-2f81fd13d91d6e412c8bc1c6ea0eeefc-1183-695.webp" class="">
+
+<p>开发者预测：玩家通过矿洞，可以来到深渊关卡，矿洞的出口是深渊关卡的入口。在这里有个下落砸可以砸开的木板，下面第一层是一个黑影，移速比你快，需要使用冲刺才能逃离。第二层前面是一个黑影，他不会动，挡住了你的去路，右边是一些门，包含之前可以踢开的石碓，希望玩家可以领悟出冲刺踢。</p>
+<p>另外就是原本这里计划做一个npc被黑影困住了，一段时间后他就会死亡，但是因为玩家抵达深渊时间是不固定的，想要玩家看到求助而卡时间是相对困难的，加上求助的表现也不是很好做，这里的想法就搁浅了。</p>
+<p>实际体验：第一版，在这里有个bug，玩家冲刺可以直接通过黑影，没有学到技能就离开了这里（流汗黄豆.jpg）。</p>
+<h3 id="深渊-下砸"><a href="#深渊-下砸" class="headerlink" title="深渊 下砸"></a>深渊 下砸</h3><img src="/2024/09/04/lost-in-mountains-dev-review/15-8c7183ec8d8db5855553fc437b3b91b3-1325-734.webp" class="">
+
+<p>来到这里会发现没有办法往下前进了，必须去到上面，存档，并且在存档点附近击杀大黑影。</p>
+<p>在这里来到顶端，起跳，按踢可以下砸加速，击杀大黑影。接着使用冲刺踢开门然后从门后再下砸去到下面。</p>
+<p>值得一提下砸这个机制一开始我们想模仿leap year，leap year下落到了一定高度，在我们这里是大于某个速度后可以触发某些功能，于是我们想着下砸要等下落到某个速度再按下按钮才能触发下砸。</p>
+<p>乍一听没什么问题，实际做出来发现如果调了速度后按不出来，会感觉手感很差，即便知道了这个知识也很难去容易的应用，因为他对动作性有极高的要求，在速度大于10的时候在触碰到黑影之前，按下，如果提前按下，输入会被吞掉，键盘按键抬起的时间过后再按则是很难按出来，感觉这里遇到了一些谜题设计和动作元素的冲突，越是要玩家难发现则越是难按手感越差，最后还是想要一个手感较好的体验，就做了一个容易触发的下砸。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/16-b9fdcf1f1340f4c69d4f7d60ead4622e-1375-791.webp" class="">
+
+<p>来到这里会触发电梯，展示一副壁画，和一个秘密入口。</p>
+<h3 id="瀑布-坐"><a href="#瀑布-坐" class="headerlink" title="瀑布 坐"></a>瀑布 坐</h3><img src="/2024/09/04/lost-in-mountains-dev-review/17-fd5524b9abc979fcbedcbb35003661e1-1387-840.webp" class="">
+
+<p>做电梯来到第四关，会看到这里有一个门 是和下面的门一样的，可以用冲刺踢打开。</p>
+<p>瀑布玩家没有知识是上不去的，这里会给与玩家较大的力，玩家在这里无法跳很高。</p>
+<p>瀑布这里原本要放一个坐着的老头，在玩家摔落时候提醒玩家不要急，坐一会之类的，但是因为体量，在这已经不好继续做了。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/18-33886db859c51249135bc1aaed162d4c-1115-857.webp" class="">
+
+<p>玩家在这里坐下，等待十秒，会触发蓝点，一开始的版本是没有音效的，蓝点状态下是不会受到水流影响的。玩家一路到达顶端会需要经过两到三次冥想。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/19-914e7288905c85c6c91519f26a511db4-1527-924.webp" class="">
+
+<h3 id="冥想-蜗牛门"><a href="#冥想-蜗牛门" class="headerlink" title="冥想 蜗牛门"></a>冥想 蜗牛门</h3><p>预测中的流程：玩家一路向上来到顶端之后发现无路可走，只能往左边走。掉进时间谜题房间。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/20-aaf149f8e2727c9d73eb82d171f21210-1519-1099.webp" class="">
+
+<figcaption>需要坐到绿点出现才能过这里。</figcaption>
+
+<p>在这里玩家不能回档，黑板上写了一些提示，以及一些意义不明的文字，希望玩家领悟如何开这个蜗牛门。</p>
+<p>解题方法是：坐下，然后等待蓝点过后，再等待20秒，会触发绿点，绿点状态下，时间会加速流动。</p>
+<p>玩家实际情况：因为冥想有二重应用，等待30秒触发绿点，旁边这个绿门我们叫蜗牛门，需要十分钟后才会打开。一开始的版本蓝点做的太小，导致玩家蓝点后没发现蓝点功能，多等了好久就触发了绿点，提前打开了蜗牛门。而里面又什么都没有，就让玩家感觉困惑。</p>
+<p>后面可能会考虑让蜗牛门的有一个压力开关，需要坐在压力开关上，蜗牛门才会开始计时，这样可以起到蓝点和绿点的保序作用。蓝点后面加上了音效，还是希望顺序得到保障（虽然音效质量不太行）。</p>
+<h3 id="冥想-登云"><a href="#冥想-登云" class="headerlink" title="冥想 登云"></a>冥想 登云</h3><img src="/2024/09/04/lost-in-mountains-dev-review/21-b49ee9eacbbb03da4567bea7190cee6a-1676-925.webp" class="">
+
+<p>玩家来到云关卡，云平台会水平移动，只要你的y轴速度小于一个值，你就不会掉下去，这里可能还得添加一些反馈，比如穿过了云给个小粒子特效。</p>
+<p>之前的蜗牛门关卡后面还有一块牌子，通过了这里之之后才能去到云层关卡。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/22-a5fa543641e4800c1c796ae0a53afc8f-1125-681.webp" class="">
+
+<p>这里有一块木牌，提示了一个很重要的知识——“可以上瀑布，便可上浮云”。</p>
+<p>也就是说蓝点状态下可以停留在浮云上。</p>
+<p>之前可能很多玩家因为一些bug，回大档的时候下落时候速度较小，导致可能留在了浮云上，进而导致破序，但是这里给的是稳定上云的方法，只要坐下10秒，跳进时空旋涡，就会稳定落在云上，或者直接坐下 然后按R回档，也能落在云上。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/23-871867053a499a60e53b3245a0984da7-1543-831.webp" class="">
+
+<figcaption>左上有个小蓝点来着</figcaption>
+
+<p>这个功能原本是个bug来的，但是我们难以一次性全修复，所以索性当成功能，还和蓝点的意象有了一种莫名的契合。</p>
+<p>实际上：玩家完全联想不到这一知识的使用方法，可能也就把他忽略了，进而没法完成后面的关卡。</p>
+<h3 id="拯救蜘蛛人-吃四个金币"><a href="#拯救蜘蛛人-吃四个金币" class="headerlink" title="拯救蜘蛛人 吃四个金币"></a>拯救蜘蛛人 吃四个金币</h3><p>如果按照预料中的流程，蜘蛛人是先帮助了玩家然后再死亡的，现在玩家可能会萌生一种想要反过来帮助她的情感，开发者是这样假设的。</p>
+<p>前面流程中暗示蜘蛛人是吃太多金币而死，所以你的拯救方法就是帮助他处理掉上面的金币。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/24-bd0392ea4dcf1c4e203aaa526edbc02e-851-790.webp" class="">
+
+<p>而因为他60秒就会吃到上面的金币死亡，所以需要一个方法来快速帮他吃到。于是就要使用上面提到的冥想登云法，加上地图左右连通，来到蜘蛛人的右侧，帮他把金币吃完。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/25-2115818462f39cc0ff5623f4a65c7f26-1530-1103.webp" class="">
+
+<figcaption>金币，红色的金币。</figcaption>
+
+<img src="/2024/09/04/lost-in-mountains-dev-review/26-0f8b664ca917e0eebf04dad38c9d6240-987-608.webp" class="">
+
+<figcaption>吃完后会有一个木牌。</figcaption>
+
+<h3 id="拯救灰心哥-踢绳子"><a href="#拯救灰心哥-踢绳子" class="headerlink" title="拯救灰心哥 踢绳子"></a>拯救灰心哥 踢绳子</h3><img src="/2024/09/04/lost-in-mountains-dev-review/27-3e421bcacfa11257ae19d469e85cc574-778-575.webp" class="">
+
+<p>救完了蜘蛛人回到营地找灰心哥对话，他会再次出发。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/28-248d95144cea52cb9f42b618cea2fa3b-1744-1100.webp" class="">
+
+<figcaption>到底应该如何上去呢。</figcaption>
+
+<img src="/2024/09/04/lost-in-mountains-dev-review/29-7605b1339f0047be46b18636b3ddc738-875-659.webp" class="">
+
+<figcaption>暗示玩家上去踢绳子，一共有三个绳子要踢。</figcaption>
+
+<p>这里需要玩家已经非常熟悉地图，从哪里下跳都要已经记住了，才能很好的通关。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/30-0ff1f3b318e18b1470bb014d855c4ec2-1533-1481.webp" class="">
+
+<p>这里其实不太希望玩家从最上面那个开始踢，最开始的设定是玩家最后和灰心哥一起在顶端相见，但是如果动线是从上往下的话就会不自然，需要多一个tp或者别的操作，并且想要在这里，实现一个类似我为灰心哥多吃了一些金币的情节（强制自我牺牲），把一些必吃金币摆在了路上，后面的关卡，从瀑布和云那边走，是限制成两个跳跃也可以过的，也是增加了设计难度。</p>
+<p>最后发现感觉还是加入留下了一个最优路线，玩家就会选择最优路线，从上往下踢，下次可能还是得考虑清楚一点。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/31-299a37a0b890d44e150fc935c31f899f-713-876.webp" class="">
+
+<figcaption>绳子是物理的，gpt帮我写的小模拟代码，唔ai真好用。</figcaption>
+
+<img src="/2024/09/04/lost-in-mountains-dev-review/32-e10a5050cdb9489c1cf41daaf93fe67b-763-475.webp" class="">
+
+<p>最后灰心哥脱帽致敬。玩家按E，可以带上帽子。</p>
+<img src="/2024/09/04/lost-in-mountains-dev-review/33-fe2b637679215d39eb094c2082547677-556-381.webp" class="">
+
+<figcaption>master标志</figcaption>
+
+<h2 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h2><img src="/2024/09/04/lost-in-mountains-dev-review/34-274065d9e982b5507168f8334cb2846c-1302-846.webp" class="">
+
+<p>一开始我们的构想是玩家只要玩家只要在火堆边坐下30秒就能触发结局，一个时间锁，就是希望玩家已经淡然了一切，所以在火堆边坐一会就好了，这样一种抽象的行为。</p>
+<p>这个设定来自far cry4，一开始就可以结束游戏的感觉，同时也是你获得知识了的话，30秒就可以通关。</p>
+<p>最后还是 希望玩家能打完这个游戏，所以加上了一些通关条件锁——救两个人，感觉保留那个在这坐30秒就结局的设定也还挺有味的。</p>
+<h2 id="最后的石像"><a href="#最后的石像" class="headerlink" title="最后的石像"></a>最后的石像</h2><img src="/2024/09/04/lost-in-mountains-dev-review/35-5b5b34a247450d437edfeccf168804f2-1549-1006.webp" class="">
+
+<p>之前提到这里有个隐藏房间，其实这个石像也是一个蜗牛门。感兴趣的读者可以去试试，进入了开发者房间后，可以试试喊。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次的核心目的是用关卡传达一些抽象情感，前面的爬楼是痛苦 矿洞是迷茫 深渊是懦弱 瀑布是焦虑，设计流程是先定下情感，然后造一个情感相关的小机制，最后把他们缝合起来。</p>
+<p>为了情感传达 这么多情感铺了太多小机制，如果这些情感都是集中在一个机制的不同用法上可能会比较好，经验总结是情感难以作为直接目的，游戏的目的首先应该是游戏。也不知道如何去做一个特定的人类情感，感觉堆多了就变成偏剧情的游戏了，与一开始用关卡传达情感相悖，但是想要调动起偏人的情感类似，比如感动、痛苦、悲伤之类的，还是得使用文字，在虚构层更容易表达出这些情感，关卡在这方面传达抽象的情感是一个方向，以传递情感作为主要功能会非常难设计。</p>
+<p>另外就是知识解谜感觉确实很难做，很难做的巧妙，可能主要还是设计方法论的思路上的问题，这也是开发者很难做到的事——让自己像玩家一样无知。</p>
+<p>同时也要考虑一个知识是玩家所必须知道的还是知道或者不知道无所谓的，前者多用硬锁，后者多用软锁。</p>
+<p>这次boom大部分精力集中在堆机制，没有时间考虑玩家到这里是怎么想，并非以玩家中心，而是作者自嗨的结果，信息管理完全是后面加的，也因为太多机制信息都绑在一起，一个机制两三个信息，理解难度太高，设计难度也高。可以简化一些机制，然后再重组，保留一个两个机制再深挖，或许会更好。</p>
+<p>最后最后，这次项目全职参与，确实是堆了不少小脚本，体量做的很大，不像一个jam作品，搞到最后大家都很辛苦，也非常感谢队友对我的理解和包容，虽然最后成品不尽人意，但是还是希望从失败中可以学到东西，因此而写下了这篇回顾，明确目标，朝着目标迈进。</p>
+<p>能做游戏真是太好了。</p>
+<p>2024.9.3</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">飞翔的子明</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://aiden-potter.github.io/2024/09/04/lost-in-mountains-dev-review/">https://aiden-potter.github.io/2024/09/04/lost-in-mountains-dev-review/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Aiden-Potter.github.io" target="_blank">Ziming's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><a class="post-meta__tags" href="/tags/%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F/">独立游戏</a><a class="post-meta__tags" href="/tags/%E5%BC%80%E5%8F%91%E5%9B%9E%E9%A1%BE/">开发回顾</a></div><div class="post_share"><div class="social-share" data-image="/images/lost-in-mountains-dev-review-cover.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/07/04/reading-notes-iwata-san/"><img class="prev-cover" src="/images/reading-notes-iwata-san-cover.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">岩田聪的读书笔记</div></div></a></div><div class="next-post pull-right"><a href="/2024/08/26/about-home/"><img class="next-cover" src="/images/about-home-cover.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">关于家</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/31/flying-game-dev-july/" title="飞行游戏开发记录——七月"><img class="cover" src="/images/bird.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-30</div><div class="title">飞行游戏开发记录——七月</div></div></a></div><div><a href="/2025/07/11/gamejam-making-games/" title="关于做游戏GameJam"><img class="cover" src="/images/gamejam-making-games-cover.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-10</div><div class="title">关于做游戏GameJam</div></div></a></div><div><a href="/2026/01/21/gdc2017-uncharted-4-off-roading/" title="GDC2017 神海4载具：The Science of Off-Roading"><img class="cover" src="/images/gdc2017-uncharted-4-off-roading-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-20</div><div class="title">GDC2017 神海4载具：The Science of Off-Roading</div></div></a></div><div><a href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass"><img class="cover" src="/images/gdc2018-vehicle-feel-masterclass-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-17</div><div class="title">GDC2018 载具手感：Vehicle Feel Masterclass</div></div></a></div><div><a href="/2022/05/29/gdc2019-noita-tech-and-design/" title="GDC2019 Noita tech and design"><img class="cover" src="/images/gdc2019-noita-tech-and-design-cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-29</div><div class="title">GDC2019 Noita tech and design</div></div></a></div><div><a href="/2025/07/04/reading-notes-iwata-san/" title="岩田聪的读书笔记"><img class="cover" src="/images/reading-notes-iwata-san-cover.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-03</div><div class="title">岩田聪的读书笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/43874834?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">飞翔的子明</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/146290005" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://github.com/Aiden-Potter" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/fei-xiang-de-zi-ming" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.cnblogs.com/FlyingZiming" target="_blank" title="博客园"><i class="fas fa-rss"></i></a><a class="social-icon" href="https://www.gcores.com/users/586569/talks" target="_blank" title="Gcores"><i class="fas fa-gamepad"></i></a><a class="social-icon" href="mailto:ziming0327@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Keep curious</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83"><span class="toc-number">2.</span> <span class="toc-text">核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%B5%E8%BE%BE%E6%A0%B8%E5%BF%83%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-number">3.</span> <span class="toc-text">抵达核心的路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E7%9A%84%E7%9F%A5%E8%AF%86%E8%B0%9C%E9%A2%98%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">游戏的知识谜题详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%90%BD%E5%96%8A-%E8%9C%98%E8%9B%9B%E4%BA%BA"><span class="toc-number">4.1.</span> <span class="toc-text">下落喊 蜘蛛人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9C%98%E8%9B%9B%E4%BA%BA-%E6%AD%BB%E4%BA%A1"><span class="toc-number">4.2.</span> <span class="toc-text">蜘蛛人 死亡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%91%E5%B8%81-%E7%BA%A2%E7%82%B9"><span class="toc-number">4.3.</span> <span class="toc-text">金币 红点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E7%A9%BA%E9%97%A8-%E5%9B%9E%E6%A1%A3%E6%9C%BA%E5%88%B6"><span class="toc-number">4.4.</span> <span class="toc-text">时空门 回档机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E5%BE%AA%E7%8E%AF%E5%9C%B0%E5%9B%BE"><span class="toc-number">4.5.</span> <span class="toc-text">左右循环地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%AA%E5%90%91%E6%9C%A8%E6%9D%BF-%E7%9F%BF%E6%B4%9E"><span class="toc-number">4.6.</span> <span class="toc-text">横向木板 矿洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A2-%E5%A1%8C%E6%96%B9"><span class="toc-number">4.7.</span> <span class="toc-text">踢 塌方</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%96%8A-%E5%A3%B0%E6%8E%A7%E7%81%AF"><span class="toc-number">4.8.</span> <span class="toc-text">喊 声控灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%B8%8A-%E5%86%B2%E5%88%BA%E8%B8%A2"><span class="toc-number">4.9.</span> <span class="toc-text">深渊 冲刺踢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%B8%8A-%E4%B8%8B%E7%A0%B8"><span class="toc-number">4.10.</span> <span class="toc-text">深渊 下砸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%80%91%E5%B8%83-%E5%9D%90"><span class="toc-number">4.11.</span> <span class="toc-text">瀑布 坐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%A5%E6%83%B3-%E8%9C%97%E7%89%9B%E9%97%A8"><span class="toc-number">4.12.</span> <span class="toc-text">冥想 蜗牛门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%A5%E6%83%B3-%E7%99%BB%E4%BA%91"><span class="toc-number">4.13.</span> <span class="toc-text">冥想 登云</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AF%E6%95%91%E8%9C%98%E8%9B%9B%E4%BA%BA-%E5%90%83%E5%9B%9B%E4%B8%AA%E9%87%91%E5%B8%81"><span class="toc-number">4.14.</span> <span class="toc-text">拯救蜘蛛人 吃四个金币</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AF%E6%95%91%E7%81%B0%E5%BF%83%E5%93%A5-%E8%B8%A2%E7%BB%B3%E5%AD%90"><span class="toc-number">4.15.</span> <span class="toc-text">拯救灰心哥 踢绳子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%A3%B0"><span class="toc-number">5.</span> <span class="toc-text">尾声</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E7%9F%B3%E5%83%8F"><span class="toc-number">6.</span> <span class="toc-text">最后的石像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/21/gdc2017-uncharted-4-off-roading/" title="GDC2017 神海4载具：The Science of Off-Roading"><img src="/images/gdc2017-uncharted-4-off-roading-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GDC2017 神海4载具：The Science of Off-Roading"/></a><div class="content"><a class="title" href="/2026/01/21/gdc2017-uncharted-4-off-roading/" title="GDC2017 神海4载具：The Science of Off-Roading">GDC2017 神海4载具：The Science of Off-Roading</a><time datetime="2026-01-20T16:15:14.000Z" title="发表于 2026-01-20 16:15:14">2026-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass"><img src="/images/gdc2018-vehicle-feel-masterclass-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GDC2018 载具手感：Vehicle Feel Masterclass"/></a><div class="content"><a class="title" href="/2026/01/18/gdc2018-vehicle-feel-masterclass/" title="GDC2018 载具手感：Vehicle Feel Masterclass">GDC2018 载具手感：Vehicle Feel Masterclass</a><time datetime="2026-01-17T20:02:40.000Z" title="发表于 2026-01-17 20:02:40">2026-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/19/doubt-and-belief/" title="关于怀疑和相信"><img src="/images/doubt-and-belief-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于怀疑和相信"/></a><div class="content"><a class="title" href="/2025/12/19/doubt-and-belief/" title="关于怀疑和相信">关于怀疑和相信</a><time datetime="2025-12-19T00:35:00.000Z" title="发表于 2025-12-19 00:35:00">2025-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/30/online-games-memories/" title="关于网络游戏"><img src="/images/online-games-memories-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于网络游戏"/></a><div class="content"><a class="title" href="/2025/07/30/online-games-memories/" title="关于网络游戏">关于网络游戏</a><time datetime="2025-07-29T23:25:05.000Z" title="发表于 2025-07-29 23:25:05">2025-07-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/11/gamejam-making-games/" title="关于做游戏GameJam"><img src="/images/gamejam-making-games-cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于做游戏GameJam"/></a><div class="content"><a class="title" href="/2025/07/11/gamejam-making-games/" title="关于做游戏GameJam">关于做游戏GameJam</a><time datetime="2025-07-10T22:59:41.000Z" title="发表于 2025-07-10 22:59:41">2025-07-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By 飞翔的子明</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script id="canvas_nest" defer="defer" color="255,255,255" opacity="0.8" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
