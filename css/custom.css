@@ -13,18 +13,3 @@
   -ms-transform: none !important;
   transform: none !important;
 }
-
-#body-wrap {
-  opacity: 1;
-  transition: opacity 160ms ease-out;
-}
-
-html.page-fading #body-wrap {
-  opacity: 0.96;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #body-wrap {
-    transition: none;
-  }
-}
