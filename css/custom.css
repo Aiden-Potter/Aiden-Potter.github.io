@@ -16,11 +16,11 @@
 
 #body-wrap {
   opacity: 1;
-  transition: opacity 120ms ease-out;
+  transition: opacity 90ms ease-out;
 }
 
 html.page-fading #body-wrap {
-  opacity: 0.92;
+  opacity: 0.97;
 }
 
 @media (prefers-reduced-motion: reduce) {
