@@ -451,9 +451,9 @@
       
         <tags>
             
-            <tag> 物理引擎 </tag>
-            
             <tag> PBD </tag>
+            
+            <tag> 物理引擎 </tag>
             
             <tag> 游戏模拟 </tag>
             
@@ -569,9 +569,9 @@
             
             <tag> 游戏开发 </tag>
             
-            <tag> GDC </tag>
-            
             <tag> Noita </tag>
+            
+            <tag> GDC </tag>
             
             <tag> 技术美术 </tag>
             
@@ -602,9 +602,9 @@
             
             <tag> GDC </tag>
             
-            <tag> 物理模拟 </tag>
-            
             <tag> 技术美术 </tag>
+            
+            <tag> 物理模拟 </tag>
             
             <tag> 物理动画 </tag>
             
@@ -631,11 +631,11 @@
       
         <tags>
             
+            <tag> 物理引擎 </tag>
+            
             <tag> PBF </tag>
             
             <tag> 流体模拟 </tag>
-            
-            <tag> 物理引擎 </tag>
             
         </tags>
       
