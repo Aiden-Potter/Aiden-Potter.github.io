@@ -30,3 +30,27 @@
     width: 100%;
   }
 }
+
+#article-container .poem-image.poem-image-rotated-left {
+  position: relative;
+  width: 50%;
+  aspect-ratio: 750 / 1332;
+  margin: 2rem auto 0;
+  overflow: hidden;
+}
+
+#article-container .poem-image.poem-image-rotated-left img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.6%;
+  max-width: none;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center;
+}
+
+@media screen and (max-width: 768px) {
+  #article-container .poem-image.poem-image-rotated-left {
+    width: 100%;
+  }
+}
