@@ -13,3 +13,20 @@
   -ms-transform: none !important;
   transform: none !important;
 }
+
+.poem-image {
+  margin: 2rem 0 0;
+  text-align: center;
+}
+
+#article-container .poem-image img {
+  display: inline-block;
+  width: 50%;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #article-container .poem-image img {
+    width: 100%;
+  }
+}
